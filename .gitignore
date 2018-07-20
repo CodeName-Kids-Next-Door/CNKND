@@ -1,2 +1,5 @@
 # Google App Engine generated folder
 appengine-generated/
+
+# Ignore generated python files
+*.pyc
