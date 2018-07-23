@@ -42,7 +42,8 @@ class TournamentCreatorPage(webapp2.RequestHandler):
         name = self.request.get('name')
         background_image1 = self.request.get('background_image')
         background_image = self.request.get('background')
-        bracket_style = self.request.get('style')
+        bracket_style_font = self.request.get('style-font')
+        bracket_style_color = self.request.get('style-color')
         loser_bracket = self.request.get('loser_bracket')
         public = self.request.get('public')
 
