@@ -11,5 +11,10 @@ class Profiles(ndb.Model):
     name = ndb.StringProperty(required = True)
     wins = ndb.IntegerProperty()
     loses = ndb.IntegerProperty()
-    tournaments_created = ndb.PickelProperty()
-    tournaments_participated = ndb.PickelProperty()
+    tournaments_created = ndb.StringProperty(repeated = True)
+    tournaments_participated = ndb.StringProperty(repeated = True)
+
+class Probabilities(ndb.Model):
+    profile = ndb.StringProperty(required = True)
+    strength = ndb.IntegerProperty(required = True)
+    rank = ndb.IntegerProperty(required = True)
