@@ -4,6 +4,7 @@ import os
 from models import Tournaments
 from models import Profiles
 from models import Probabilities
+from models import Users
 
 jinja_current_directory = jinja2.Environment(
     loader = jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -41,7 +42,7 @@ class TournamentCreatorPage(webapp2.RequestHandler):
         name = self.request.get('name')
         background_image1 = self.request.get('background_image')
         background_image = self.request.get('background')
-        bracket_style = self.request.get('name')
+        bracket_style = self.request.get('style')
         loser_bracket = self.request.get('loser_bracket')
         public = self.request.get('public')
 
