@@ -1,6 +1,9 @@
 import webapp2
 import jinja2
 import os
+from models import Tournaments
+from models import Profiles
+from models import Probabilities
 
 jinja_current_directory = jinja2.Environment(
     loader = jinja2.FileSystemLoader(os.path.dirname(__file__)),
