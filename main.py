@@ -38,7 +38,13 @@ class TournamentCreatorPage(webapp2.RequestHandler):
                    jinja_current_directory.get_template('templates/tournament_Creator.html')
         self.response.write(tournament_Creator_template.render())
     def post(self):
-        x =1
+        name = self.request.get('name')
+        background_image1 = self.request.get('background_image')
+        background_image = self.request.get('background')
+        bracket_style = self.request.get('name')
+        loser_bracket = self.request.get('loser_bracket')
+        public = self.request.get('public')
+
 
 class TournmanetParticipatePage(webapp2.RequestHandler):
     def get(self):

@@ -8,6 +8,7 @@ class Tournaments(ndb.Model):
     public = ndb.BooleanProperty(required = True)
     players = ndb.StringProperty(repeated = True)
     champions = ndb.StringProperty()
+    timer = ndb.IntegerProperty()
 
 class Profiles(ndb.Model):
     name = ndb.StringProperty(required = True)
