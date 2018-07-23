@@ -27,7 +27,7 @@ class CreateANewAccountPage(webapp2.RequestHandler):
 class ProfilePage(webapp2.RequestHandler):
     def get(self):
         Profile_template = \
-        
+
 
 
 
