@@ -14,7 +14,7 @@ class MainPage(webapp2.RequestHandler):
     def get(self):
         main_template = \
              jinja_current_directory.get_template('templates/main.html')
-     self.response.write(main_template.render())
+        self.response.write(main_template.render())
 
 class LoginPage(webapp2.RequestHandler):
     def post(self):
@@ -22,7 +22,7 @@ class LoginPage(webapp2.RequestHandler):
               jinja_current_directory.get_template('templates/login.html')
         self.response.write(login_template.render())
     def post(self):
-
+        x = 1
 
 class ProfilePage(webapp2.RequestHandler):
     def get(self):
@@ -30,7 +30,7 @@ class ProfilePage(webapp2.RequestHandler):
                 jinja_current_directory.get_template('templates/profile.html')
         self.response.write(profile_template.render())
     def post(self):
-
+        x=1
 
 class TournamentCreatorPage(webapp2.RequestHandler):
     def get(self):
@@ -38,7 +38,7 @@ class TournamentCreatorPage(webapp2.RequestHandler):
                    jinja_current_directory.get_template('templates/tournamentCreator.html')
         self.response.write(tournament_Creator_template.render())
     def post(self):
-
+        x =1
 
 class TournmanetParticipatePage(webapp2.RequestHandler):
     def get(self):
@@ -46,7 +46,7 @@ class TournmanetParticipatePage(webapp2.RequestHandler):
             jinja_current_directory.get_template('templates/tournamentParticipate.html')
         self.response.write(tournament_Participate_template.render())
 
-class TournamentViewerPage(webapp2.RequestHandler):
+class TournmanetViewerPage(webapp2.RequestHandler):
     def get(self):
         tournament_Viewer_template = \
             jinja_current_directory.get_template('templates/tournamentViewer.html')
@@ -57,8 +57,8 @@ class TournamentViewerPage(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/login', LoginPage),
-    ('/profile', ProfilePage)
-    ('/tournamentCreator', TournamentCreatorPage)
-    ('/tournamentParticipate', TournmanetParticipatePage)
+    ('/profile', ProfilePage),
+    ('/tournamentCreator', TournamentCreatorPage),
+    ('/tournamentParticipate', TournmanetParticipatePage),
     ('/tournamentViewer', TournmanetViewerPage)
 ], debug=True)
