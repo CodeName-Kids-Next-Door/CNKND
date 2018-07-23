@@ -100,13 +100,22 @@ class TournamentCreatorPage(webapp2.RequestHandler):
         self.response.write(tournament_Creator_template.render())
     def post(self):
         name = self.request.get('name')
-        background_image1 = self.request.get('background_image')
-        background_image = self.request.get('background')
+        background_image = self.request.get('background_image')
+        if background_image = ''
+            background_image = self.request.get('background')
         bracket_style_font = self.request.get('style-font')
         bracket_style_color = self.request.get('style-color')
-        loser_bracket = self.request.get('loser_bracket')
+        if self.request.get('loser_bracket') = 'yes'
+            loser_bracket = True
         public = self.request.get('public')
-        
+        new_tournament = Tournaments(name = name
+            background_image = background_image
+            bracket_style =
+            loser_bracket =
+            public = ndb.BooleanProperty(required = True)
+            players = ndb.StringProperty(repeated = True)
+            champions = ndb.StringProperty()
+            timer = ndb.IntegerProperty())
 
 
 class TournmanetParticipatePage(webapp2.RequestHandler):
