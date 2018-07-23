@@ -6,6 +6,7 @@ class Tournaments(ndb.Model):
     bracket_style = ndb.StringProperty(required = True)
     loser_bracket = ndb.BooleanProperty()
     public = ndb.BooleanProperty(required = True)
+    players = ndb.StringProperty(repeated = True)
 
 class Profiles(ndb.Model):
     name = ndb.StringProperty(required = True)
