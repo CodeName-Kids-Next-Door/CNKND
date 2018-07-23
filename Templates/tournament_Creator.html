@@ -6,8 +6,11 @@
   </head>
   <body>
     <form method="post">
-      <label for="Background Image">Background Images</label>
+      <label for="name">What is the Name of this Tournament?</label>
+      <input type="text" name="name" placeholder="Name of Tournament"/>
+      <label for="background_image">Background Images</label>
       <select name="background_image">
+        <option placeholder='Select an Option'></option>
         <option value="SSBros">Super Smash Bros</option>
         <option value="cod">Call of Duty</option>
         <option value="lol">League of Legends</option>
@@ -23,39 +26,67 @@
       <br>
       <br>
       <p>If you want a different background, paste image address here</p>
-      <div>
-        <input type="text" name="background" value="optional_image" id="background_image">
+      <div id="image">
+        <input type="text" name="background" id="background_image" placeholder="Optional Image">
         <br>
         <br>
       </div>
         <p>Will you want a loser bracket?</p>
-      <div>
+      <div id="loser_bracket">
+        <label for="loser_bracketOption1">Yes</label>
         <input type="radio" name="loser_bracket" value="yes" id="loser_bracketOption1">
         <br>
+        <label for="loser_bracketOption1">No </label>
         <input type="radio" name="loser_bracket" value="no" id="loser_bracketOption2">
         <br>
       </div>
       <p>Will you want live probabilty?</p>
-      <div>
+      <div id="probabilty">
+        <label for="probabiltyOption1">Yes</label>
         <input type="radio" name="probability" value="yes" id="probabiltyOption1">
         <br>
+        <label for="probabiltyOption2">No </label>
         <input type="radio" name="probability" value="no" id="probabiltyOption2">
         <br>
       </div>
       <p>Will you want the tournament to be public?</p>
-      <div>
+      <div id="public">
+        <label for="publicOption1">Yes</label>
         <input type="radio" name="public" id="publicOption1" value="yes">
         <br>
+        <label for="publicOption2">No </label>
         <input type="radio" name="public" id="publicOption2" value="no">
         <br>
       </div>
       <p>Will you want a timer?</p>
       <div id="timer">
+        <label for="timerOption1">Yes</label>
         <input type="radio" value="yes" name="timer" id="timerOption1">
         <br>
+        <label for="timerOption2">No </label>
         <input type="radio" value="no" name="timer" id="timerOption2">
         <br>
+        <br>
       </div>
+      <label for="style-font">What kind of font do you want?</label>
+      <select name="style-font" id="style-font">
+        <option value="sans">Sans</option>
+        <option value="sans">Sans</option>
+        <option value="sans">Sans</option>
+        <option value="sans">Sans</option>
+        <option value="sans">Sans</option>
+        <option value="sans">Sans</option>
+      </select>
+      <label for="style-color">What color do you want?</label>
+      <select name="style-color" id="style-color">
+        <option value="black">Black</option>
+        <option value="red">Red</option>
+        <option value="blue">Blue</option>
+        <option value="orange">Orange</option>
+        <option value="yellow">Yellow</option>
+        <option value="purple">Purple</option>
+        <option value="green">Green</option>
+      </select>
       <input type="submit"/>
     </form>
   </body>
