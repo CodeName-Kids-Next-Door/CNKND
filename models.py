@@ -18,7 +18,7 @@ class Profiles(ndb.Model):
     tournaments_participated = ndb.StringProperty(repeated = True)
     championships = ndb.IntegerProperty()
 
-class Users:
+class Users(ndb.Model):
     first_name = ndb.StringProperty(required = True)
     last_name = ndb.StringProperty(required = True)
 
