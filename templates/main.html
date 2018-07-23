@@ -4,64 +4,66 @@
     <style media="screen">
 
       #style {
-        background-color: red;
-        background-image: url("../images/tournament.jpg");
+        background-color: white;
+        background-image: url("http://cybersport.pl/wp-content/uploads/2015/12/esl-one-cologne-730x380.jpg");
         background-repeat: no-repeat;
         background-size: cover;
-}
-
+      }
       ul {
         list-style-type: none;
         margin: 0;
         padding: 0;
         overflow: hidden;
         background-color: #333;
-}
-
+      }
       li {
         float: right;
-}
-
+      }
       li a {
         display: block;
         color: red;
         text-align: left;
         padding: 14px 16px;
         text-decoration: none;
-}
-
+      }
       li a:hover {
         background-color: #111;
-}
-
+      }
       h1{
         font-size: 50px;
         color: white;
         text-align: center;
-}
-
+      }
       h2{
         font-size: 25px;
         color: white;
         text-align: center;
         text-shadow: 4px 4px 10px red;
-}
+      }
       img{
         display: block;
         margin-left: auto;
         margin-right: auto;
         width: 50%;
       }
-      div{
+      div.first{
         padding: 30px 0;
         background-color: rgba(255, 255, 255, 0.5);
       }
-
+      div.second{
+        padding: 0 0;
+        background-color: rgba(255, 255, 255, 0.5)
+      }
+      p.PT{
+        font-size: 20px;
+        font-family: Times New Roman;
+      }
     </style>
     <meta charset="utf-8">
     <title> Bracket Generator </title>
   </head>
-  <body id="style">
+  <body id="">
+    <div id = "style">
     <ul>
       <li><a class="active" href="/">Home</a></li>
       <li><a href="/login">Login</a></li>
@@ -70,9 +72,15 @@
     </ul>
     <h1>Welcome to a Tournmanet Bracket Generator </h1>
     <h2> This Tournmanet Bracket Generator helps you create your own tournament with a custom design for the background, name, and a style of your bracket and a soon feature of a live match box and a live probabilty result </h2>
-    <div>
+    <div class = "first" >
       <img src="https://ps.w.org/tournament-bracket-generator/assets/banner-772x250.png" alt="Tournmanet Bracket">
     </div>
-
+    </div>
+    <div class = "second">
+      <p class = "PT">
+        Previous Tournaments
+        <img src="https://www.baggo.com/templates/default/images/bracket.png" alt="Another Tournmanet Bracket">
+      </p>
+    </div>
   </body>
 </html>
