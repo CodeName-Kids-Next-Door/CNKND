@@ -3,3 +3,4 @@ appengine-generated/
 
 # Ignore generated python files
 *.pyc
+.DS_Store
