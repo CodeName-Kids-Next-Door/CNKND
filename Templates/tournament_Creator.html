@@ -5,6 +5,58 @@
     <title>Tournament Creator</title>
   </head>
   <body>
-
+    <form method="post">
+      <label for="Background Image">Background Images</label>
+      <select name="background_image">
+        <option value="SSBros">Super Smash Bros</option>
+        <option value="cod">Call of Duty</option>
+        <option value="lol">League of Legends</option>
+        <option value="hs">HearthStones</option>
+        <option value="csgo">CsGo</option>
+        <option value="ow">OverWatch</option>
+        <option value="black">Black</option>
+        <option value="blue">Blue</option>
+        <option value="red">Red</option>
+        <option value="white">White</option>
+        <option value="green">Green</option>
+      </select>
+      <br>
+      <br>
+      <p>If you want a different background, paste image address here</p>
+      <div>
+        <input type="text" name="background" value="optional_image" id="background_image">
+        <br>
+        <br>
+      </div>
+        <p>Will you want a loser bracket?</p>
+      <div>
+        <input type="radio" name="loser_bracket" value="yes" id="loser_bracketOption1">
+        <br>
+        <input type="radio" name="loser_bracket" value="no" id="loser_bracketOption2">
+        <br>
+      </div>
+      <p>Will you want live probabilty?</p>
+      <div>
+        <input type="radio" name="probability" value="yes" id="probabiltyOption1">
+        <br>
+        <input type="radio" name="probability" value="no" id="probabiltyOption2">
+        <br>
+      </div>
+      <p>Will you want the tournament to be public?</p>
+      <div>
+        <input type="radio" name="public" id="publicOption1" value="yes">
+        <br>
+        <input type="radio" name="public" id="publicOption2" value="no">
+        <br>
+      </div>
+      <p>Will you want a timer?</p>
+      <div id="timer">
+        <input type="radio" value="yes" name="timer" id="timerOption1">
+        <br>
+        <input type="radio" value="no" name="timer" id="timerOption2">
+        <br>
+      </div>
+      <input type="submit"/>
+    </form>
   </body>
 </html>
