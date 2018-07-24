@@ -119,6 +119,13 @@ class TournamentCreatorPage(webapp2.RequestHandler):
                 tournament_Creator_template = \
                    jinja_current_directory.get_template('templates/tournament_Creator.html')
                 self.response.write(tournament_Creator_template.render())
+        else:
+            self.response.write('''
+                Please log in to use our site! <br>
+                <a href="%s">Sign in</a>''' % (users.create_login_url('/login')))
+            # tournament_Creator_template = \
+            #    jinja_current_directory.get_template('templates/login.html')
+            # self.response.write(tournament_Creator_template.render())
     def post(self):
         user = users.get_current_user()
         if user:
