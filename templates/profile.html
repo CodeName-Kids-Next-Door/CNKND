@@ -2,9 +2,24 @@
 <html lang="en" dir="ltr">
   <head>
     <style media = "screen">
+      .friends{
+        width: 250px;
+        height: 300px;
+        background-color: orange;
+        flex-shrink: 0;
+      }
+      .fav-Game{
+        width: 250px;
+        height: 300px;
+        background-color: orange;
+        flex-shrink: 0;
+      }
       div.body-box{
+        padding: 20px;
         background-color: red;
         margin: 0 250px;
+        display: flex;
+        justify-content: space-evenly;
       }
       body{
         margin: 0;
@@ -67,6 +82,22 @@
       li a:hover {
         background-color: #111;
       }
+      .name{
+        text-align: center;
+      }
+      .Match{
+
+      }
+      .upcoming{
+        width: 250px;
+        background-color: orange;
+        flex-shrink: 0;
+      }
+      .past{
+        width: 250px;
+        background-color: orange;
+        flex-shrink: 0;
+      }
     </style>
     <meta charset="utf-8">
     <title>Your Profile Page</title>
@@ -86,17 +117,35 @@
       </div>
       <div class="name-bio">
         <h3 class="name"> UnAuthorize </h3>
-        <p class="bio"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce non neque ut risus accumsan dictum vitae ut orci. Nullam hendrerit pellentesque tristique. Pellentesque et nulla pulvinar ex elementum venenatis. Nulla a mattis ante, vitae lobortis magna. Phasellus ipsum justo, elementum at dignissim vestibulum, vestibulum ut augue. Nunc at odio ut nisi molestie dictum. Proin quis est at quam bibendum vulputate.
+        <p class="bio">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce non neque ut risus accumsan dictum vitae ut orci. Nullam hendrerit pellentesque tristique. Pellentesque et nulla pulvinar ex elementum venenatis. Nulla a mattis ante, vitae lobortis magna. Phasellus ipsum justo, elementum at dignissim vestibulum, vestibulum ut augue. Nunc at odio ut nisi molestie dictum. Proin quis est at quam bibendum vulputate.
 
-Vivamus id sem maximus, rhoncus velit a, fringilla arcu. Ut malesuada eget diam in lacinia. Duis faucibus non risus eget suscipit. Morbi at mauris vel sapien varius pellentesque. Nulla facilisi. Duis erat ante, feugiat ac faucibus quis, vehicula id velit. Proin tempus dolor eget pulvinar feugiat. Vivamus ipsum leo, tincidunt et elit et, commodo vestibulum lectus. Donec vitae enim in nisi venenatis gravida in ut sapien. Sed mattis hendrerit odio, eu egestas metus. Aliquam dapibus et dolor sit amet dapibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin eleifend, elit at dictum consequat, lectus nisl tristique ipsum, nec posuere turpis dolor ac odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce non neque ut risus accumsan dictum vitae ut orci. Nullam hendrerit pellentesque tristique. Pellentesque et nulla pulvinar ex elementum venenatis. Nulla a mattis ante, vitae lobortis magna. Phasellus ipsum justo, elementum at dignissim vestibulum, vestibulum ut augue. Nunc at odio ut nisi molestie dictum. Proin quis est at quam bibendum vulputate.
+            Vivamus id sem maximus, rhoncus velit a, fringilla arcu. Ut malesuada eget diam in lacinia. Duis faucibus non risus eget suscipit. Morbi at mauris vel sapien varius pellentesque. Nulla facilisi. Duis erat ante, feugiat ac faucibus quis, vehicula id velit. Proin tempus dolor eget pulvinar feugiat. Vivamus ipsum leo, tincidunt et elit et, commodo vestibulum lectus. Donec vitae enim in nisi venenatis gravida in ut sapien. Sed mattis hendrerit odio, eu egestas metus. Aliquam dapibus et dolor sit amet dapibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin eleifend, elit at dictum consequat, lectus nisl tristique ipsum, nec posuere turpis dolor ac odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce non neque ut risus accumsan dictum vitae ut orci. Nullam hendrerit pellentesque tristique. Pellentesque et nulla pulvinar ex elementum venenatis. Nulla a mattis ante, vitae lobortis magna. Phasellus ipsum justo, elementum at dignissim vestibulum, vestibulum ut augue. Nunc at odio ut nisi molestie dictum. Proin quis est at quam bibendum vulputate.
 
-Vivamus id sem maximus, rhoncus velit a, fringilla arcu. Ut malesuada eget diam in lacinia. Duis faucibus non risus eget suscipit. Morbi at mauris vel sapien varius pellentesque. Nulla facilisi. Duis erat ante, feugiat ac faucibus quis, vehicula id velit. Proin tempus dolor eget pulvinar feugiat. Vivamus ipsum leo, tincidunt et elit et, commodo vestibulum lectus. Donec vitae enim in nisi venenatis gravida in ut sapien. Sed mattis hendrerit odio, eu egestas metus. Aliquam dapibus et dolor sit amet dapibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin eleifend, elit at dictum consequat, lectus nisl tristique ipsum, nec posuere turpis dolor ac odio.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce non neque ut risus accumsan dictum vitae ut orci. Nullam hendrerit pellentesque tristique. Pellentesque et nulla pulvinar ex elementum venenatis. Nulla a mattis ante, vitae lobortis magna. Phasellus ipsum justo, elementum at dignissim vestibulum, vestibulum ut augue. Nunc at odio ut nisi molestie dictum. Proin quis est at quam bibendum vulputate.
+            Vivamus id sem maximus, rhoncus velit a, fringilla arcu. Ut malesuada eget diam in lacinia. Duis faucibus non risus eget suscipit. Morbi at mauris vel sapien varius pellentesque. Nulla facilisi. Duis erat ante, feugiat ac faucibus quis, vehicula id velit. Proin tempus dolor eget pulvinar feugiat. Vivamus ipsum leo, tincidunt et elit et, commodo vestibulum lectus. Donec vitae enim in nisi venenatis gravida in ut sapien. Sed mattis hendrerit odio, eu egestas metus. Aliquam dapibus et dolor sit amet dapibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin eleifend, elit at dictum consequat, lectus nisl tristique ipsum, nec posuere turpis dolor ac odio.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce non neque ut risus accumsan dictum vitae ut orci. Nullam hendrerit pellentesque tristique. Pellentesque et nulla pulvinar ex elementum venenatis. Nulla a mattis ante, vitae lobortis magna. Phasellus ipsum justo, elementum at dignissim vestibulum, vestibulum ut augue. Nunc at odio ut nisi molestie dictum. Proin quis est at quam bibendum vulputate.
 
-Vivamus id sem maximus, rhoncus velit a, fringilla arcu. Ut malesuada eget diam in lacinia. Duis faucibus non risus eget suscipit. Morbi at mauris vel sapien varius pellentesque. Nulla facilisi. Duis erat ante, feugiat ac faucibus quis, vehicula id velit. Proin tempus dolor eget pulvinar feugiat. Vivamus ipsum leo, tincidunt et elit et, commodo vestibulum lectus. Donec vitae enim in nisi venenatis gravida in ut sapien. Sed mattis hendrerit odio, eu egestas metus. Aliquam dapibus et dolor sit amet dapibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin eleifend, elit at dictum consequat, lectus nisl tristique ipsum, nec posuere turpis dolor ac odio. </p>
+            Vivamus id sem maximus, rhoncus velit a, fringilla arcu. Ut malesuada eget diam in lacinia. Duis faucibus non risus eget suscipit. Morbi at mauris vel sapien varius pellentesque. Nulla facilisi. Duis erat ante, feugiat ac faucibus quis, vehicula id velit. Proin tempus dolor eget pulvinar feugiat. Vivamus ipsum leo, tincidunt et elit et, commodo vestibulum lectus. Donec vitae enim in nisi venenatis gravida in ut sapien. Sed mattis hendrerit odio, eu egestas metus. Aliquam dapibus et dolor sit amet dapibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin eleifend, elit at dictum consequat, lectus nisl tristique ipsum, nec posuere turpis dolor ac odio.
+        </p>
       </div>
     </div>
     <div class="body-box">
-      <h1> Something </h1>
+      <div>
+        <div class="friends">
+          <h1>Friend box</h1>
+        </div>
+        <br>
+        <div class="fav-Game">
+          <h1>Favorite Game</h1>
+        </div>
+      </div>
+      <div class="Match">
+        <div class="upcoming">
+          <h1>Upcoming Matches</h1>
+        </div>
+        <div class="past">
+          <h1>Past Matches</h1>
+        </div>
+      </div>
     </div>
   </body>
 </html>
