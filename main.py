@@ -43,6 +43,9 @@ class LoginPage(webapp2.RequestHandler):
     #     self.response.write(login_template.render())
     def get(self):
         user = users.get_current_user()
+        main_template = \
+                 jinja_current_directory.get_template('templates/login.html')
+        self.response.write(main_template.render())
         if user:
             email_address = user.nickname()
             cssi_user = Users.get_by_id(user.user_id())
@@ -54,9 +57,6 @@ class LoginPage(webapp2.RequestHandler):
                     cssi_user.last_name,
                     email_address,
                     signout_link_html))
-                main_template = \
-                         jinja_current_directory.get_template('templates/login.html')
-                self.response.write(main_template.render())
             else:
                 self.response.write('''
                     <h2>Welcome to our site, %s! Please sign up!</h2> <br>
@@ -88,7 +88,6 @@ class LoginPage(webapp2.RequestHandler):
         first_prolist.prolist = new_profile.id()
         self.response.write('Thanks for signing up, %s'% cssi_user.first_name)
         self.response.write('''<br><a href="profile">Your Profile<a>''')
-
 class ProfilePage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
