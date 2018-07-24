@@ -1,10 +1,102 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <style media = "screen">
+      div.body-box{
+        background-color: red;
+        margin: 0 250px;
+      }
+      body{
+        margin: 0;
+        background-color: black;
+      }
+      div.body{
+        display: flex;
+        padding: 60px;
+        background-color: rgba(169, 169, 169, 0.5);
+        margin: 0 150px;
+      }
+      div.pic{
+        width: 150px;
+        height: 150px;
+        background-color: pink;
+        flex-shrink: 0;
+        /* padding: 150px; */
+        /* background-color: rgba(255, 255, 255, 0.5);
+        margin-left: 100px;
+        margin-right: 1000px;
+        width: 75px;
+        height: 75px;
+        float: left;
+        box-sizing: border-box; */
+      }
+      div.name-bio{
+        padding: 0 48px;
+
+        /* padding: 100px;
+        background-color: rgba(255, 255, 255, 0.5);
+        margin-left: 1000px;
+        margin-right: 100px;
+        width: 100px
+        float: right; */
+      }
+      .bio{
+        height: 80px;
+        overflow: scroll;
+      }
+      #style {
+        background-color: rgba(0, 0, 0, 0.25)
+      }
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+      }
+      li {
+        float: right;
+      }
+      li a {
+        display: block;
+        color: red;
+        text-align: left;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+      li a:hover {
+        background-color: #111;
+      }
+    </style>
     <meta charset="utf-8">
-    <title>Profile</title>
+    <title>Your Profile Page</title>
   </head>
   <body>
+    <div id = "style">
+      <ul>
+          <li><a class="active" href="/">Home</a></li>
+          <li><a href="/login">LogOut</a></li>
+          <li><a href="/profile">Edit Profile</a></li>
+          <li><a href="/tournamentCreator">Create</a></li>
+        </ul>
+    </div>
+    <div class="body">
+      <div class="pic">
 
+      </div>
+      <div class="name-bio">
+        <h3 class="name"> UnAuthorize </h3>
+        <p class="bio"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce non neque ut risus accumsan dictum vitae ut orci. Nullam hendrerit pellentesque tristique. Pellentesque et nulla pulvinar ex elementum venenatis. Nulla a mattis ante, vitae lobortis magna. Phasellus ipsum justo, elementum at dignissim vestibulum, vestibulum ut augue. Nunc at odio ut nisi molestie dictum. Proin quis est at quam bibendum vulputate.
+
+Vivamus id sem maximus, rhoncus velit a, fringilla arcu. Ut malesuada eget diam in lacinia. Duis faucibus non risus eget suscipit. Morbi at mauris vel sapien varius pellentesque. Nulla facilisi. Duis erat ante, feugiat ac faucibus quis, vehicula id velit. Proin tempus dolor eget pulvinar feugiat. Vivamus ipsum leo, tincidunt et elit et, commodo vestibulum lectus. Donec vitae enim in nisi venenatis gravida in ut sapien. Sed mattis hendrerit odio, eu egestas metus. Aliquam dapibus et dolor sit amet dapibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin eleifend, elit at dictum consequat, lectus nisl tristique ipsum, nec posuere turpis dolor ac odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce non neque ut risus accumsan dictum vitae ut orci. Nullam hendrerit pellentesque tristique. Pellentesque et nulla pulvinar ex elementum venenatis. Nulla a mattis ante, vitae lobortis magna. Phasellus ipsum justo, elementum at dignissim vestibulum, vestibulum ut augue. Nunc at odio ut nisi molestie dictum. Proin quis est at quam bibendum vulputate.
+
+Vivamus id sem maximus, rhoncus velit a, fringilla arcu. Ut malesuada eget diam in lacinia. Duis faucibus non risus eget suscipit. Morbi at mauris vel sapien varius pellentesque. Nulla facilisi. Duis erat ante, feugiat ac faucibus quis, vehicula id velit. Proin tempus dolor eget pulvinar feugiat. Vivamus ipsum leo, tincidunt et elit et, commodo vestibulum lectus. Donec vitae enim in nisi venenatis gravida in ut sapien. Sed mattis hendrerit odio, eu egestas metus. Aliquam dapibus et dolor sit amet dapibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin eleifend, elit at dictum consequat, lectus nisl tristique ipsum, nec posuere turpis dolor ac odio.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce non neque ut risus accumsan dictum vitae ut orci. Nullam hendrerit pellentesque tristique. Pellentesque et nulla pulvinar ex elementum venenatis. Nulla a mattis ante, vitae lobortis magna. Phasellus ipsum justo, elementum at dignissim vestibulum, vestibulum ut augue. Nunc at odio ut nisi molestie dictum. Proin quis est at quam bibendum vulputate.
+
+Vivamus id sem maximus, rhoncus velit a, fringilla arcu. Ut malesuada eget diam in lacinia. Duis faucibus non risus eget suscipit. Morbi at mauris vel sapien varius pellentesque. Nulla facilisi. Duis erat ante, feugiat ac faucibus quis, vehicula id velit. Proin tempus dolor eget pulvinar feugiat. Vivamus ipsum leo, tincidunt et elit et, commodo vestibulum lectus. Donec vitae enim in nisi venenatis gravida in ut sapien. Sed mattis hendrerit odio, eu egestas metus. Aliquam dapibus et dolor sit amet dapibus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin eleifend, elit at dictum consequat, lectus nisl tristique ipsum, nec posuere turpis dolor ac odio. </p>
+      </div>
+    </div>
+    <div class="body-box">
+      <h1> Something </h1>
+    </div>
   </body>
 </html>
