@@ -12,6 +12,7 @@ class Tournaments(ndb.Model):
 
 class Profiles(ndb.Model):
     name = ndb.StringProperty(required = True)
+    first_name = ndb.StringProperty(required =True)
     wins = ndb.IntegerProperty()
     loses = ndb.IntegerProperty()
     tournaments_created = ndb.StringProperty(repeated = True)
@@ -21,6 +22,7 @@ class Profiles(ndb.Model):
 class Users(ndb.Model):
     first_name = ndb.StringProperty(required = True)
     last_name = ndb.StringProperty(required = True)
+    profiles = ndb.StringProperty()
 
 class Probabilities(ndb.Model):
     profile = ndb.StringProperty(required = True)

@@ -6,12 +6,18 @@ from models import Profiles
 from models import Probabilities
 from models import Users
 from google.appengine.api import users
+from google.appengine.ext import ndb
 
 jinja_current_directory = jinja2.Environment(
     loader = jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions = ['jinja2.ext.autoescape'],
     autoescape = True)
 
+class ProList(object):
+    def __init__(self, prolist):
+        self.prolist = prolist
+        pass
+first_prolist = ProList(0)
 class MainPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
@@ -48,6 +54,9 @@ class LoginPage(webapp2.RequestHandler):
                     cssi_user.last_name,
                     email_address,
                     signout_link_html))
+                    main_template = \
+                         jinja_current_directory.get_template('templates/login.html')
+                    self.response.write(main_template.render())
             else:
                 self.response.write('''
                     <h2>Welcome to our site, %s! Please sign up!</h2> <br>
@@ -55,6 +64,8 @@ class LoginPage(webapp2.RequestHandler):
                     <input name="first_name" placeholder='First Name'/>
                     <br>
                     <input name="last_name" placeholder='Last Name'/>
+                    <br>
+                    <input name="profile_name" placeholder="User Name"/>
                     <input type="submit"/>
                     </form><br> %s <br>''' % (email_address, signout_link_html))
         else:
@@ -69,8 +80,12 @@ class LoginPage(webapp2.RequestHandler):
         cssi_user = Users(
             first_name = self.request.get('first_name'),
             last_name = self.request.get('last_name'),
+            profiles = self.request.get('profile_name'),
             id= user.user_id())
         cssi_user.put()
+        new_profile = Profiles(name = cssi_user.profiles, first_name = cssi_user.first_name)
+        new_profile.put()
+        first_prolist.prolist = new_profile.id()
         self.response.write('Thanks for signing up, %s'% cssi_user.first_name)
         self.response.write('''<br><a href="profile">Your Profile<a>''')
 
@@ -86,7 +101,7 @@ class ProfilePage(webapp2.RequestHandler):
                     Welcome %s %s (%s)! <br> %s <br>''' %
                     (cssi_user.first_name,
                     cssi_user.last_name,
-                    email_address,
+                    cssi_user.profiles,
                     signout_link_html))
         profile_template = \
                 jinja_current_directory.get_template('templates/profile.html')
@@ -96,24 +111,33 @@ class ProfilePage(webapp2.RequestHandler):
 
 class TournamentCreatorPage(webapp2.RequestHandler):
     def get(self):
-        tournament_Creator_template = \
+        user = users.get_current_user()
+        if user:
+            email_address = user.nickname()
+            cssi_user = Users.get_by_id(user.user_id())
+            signout_link_html = '<a href="%s">Sign Out</a>' % users.create_logout_url('/')
+            if cssi_user:
+                tournament_Creator_template = \
                    jinja_current_directory.get_template('templates/tournament_Creator.html')
-        self.response.write(tournament_Creator_template.render())
+                self.response.write(tournament_Creator_template.render())
     def post(self):
+        user = users.get_current_user()
+        if user:
+            email_address = user.nickname()
+            cssi_user = Users.get_by_id(user.user_id())
+            signout_link_html = '<a href="%s">Sign Out</a>' % users.create_logout_url('/')
         name = self.request.get('name')
         timer = 0
         if self.request.get("timer") == 'yes':
             timer = 999
         background_image = self.request.get('background_image')
-
-        print background_image
         if background_image == '':
             background_image = self.request.get('background')
-        bracket_style_font = self.request.get('style-font')
-        bracket_style_color = self.request.get('style-color')
+        bracket_style_font = self.request.get('style_font')
+        bracket_style_color = self.request.get('style_color')
         if self.request.get('loser_bracket') == 'yes':
             loser_bracket = True
-
+            print loser_bracket
         else:
             loser_bracket = False
         if self.request.get('public') == 'yes':
@@ -127,11 +151,28 @@ class TournamentCreatorPage(webapp2.RequestHandler):
             loser_bracket = loser_bracket,
             public = public)
         new_tournament.put()
-        print bracket_style_color
-        print bracket_style_font
+        # new_profile_key = first_prolist.prolist
+        # new_profile = new_profile_key.get()
+        # url_string = new_profile_key.urlsafe()
+        # new_profile_key = ndb.Key(urlsafe=url_string)
+        # key = Key(urlsafe=url_string)
+        # kind_string = key.kind()
+        # ident = key.id()
+        # profile = key.get()
+        # p = Profiles.get_or_insert(key)
+        p = Profiles().query(Profiles.first_name == cssi_user.first_name).fetch()
+        list_tournaments = []
+        list_tournaments.append(new_tournament.name)
+        p[0].tournaments_created = list_tournaments
+        p[0].put()
         tourn_query = Tournaments().query().fetch()
-        profile_query = Users().query().fetch()
-        tourn_dict = {'all': tourn_query, 'users': profile_query,'font': new_tournament.background_font,'color': new_tournament.background_color, 'back': new_tournament.background_image}
+        profile_query = Profiles().query().fetch()
+        tourn_dict = {'all': tourn_query,
+            'users': profile_query,
+            'title': new_tournament.name,
+            'font': new_tournament.background_font,
+            'color': new_tournament.background_color,
+            'back': new_tournament.background_image}
         tournament_Viewer_template = jinja_current_directory.get_template('templates/tournament_Viewer.html')
         self.response.write(tournament_Viewer_template.render(tourn_dict))
 
@@ -143,6 +184,13 @@ class TournmanetParticipatePage(webapp2.RequestHandler):
 
 class TournmanetViewerPage(webapp2.RequestHandler):
     def get(self):
+        tourn_query = Tournaments().query().fetch()
+        profile_query = Users().query().fetch()
+        tourn_dict = {'all': tourn_query,
+            'users': profile_query,
+            'font': new_tournament.background_font,
+            'color': new_tournament.background_color,
+            'back': new_tournament.background_image}
         tournament_Viewer_template = \
             jinja_current_directory.get_template('templates/tournament_Viewer.html')
         self.response.write(tournament_Viewer_template.render())

@@ -21,3 +21,16 @@ li a {
 li a:hover {
   background-color: #111;
 }
+
+#invisible{
+  display: none;
+}
+
+#tournament_title{
+  text-align: center;
+  text-shadow: 1px 1px White;
+}
+
+#bracket{
+  height: auto;
+}

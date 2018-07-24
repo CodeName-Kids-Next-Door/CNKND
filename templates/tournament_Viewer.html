@@ -3,18 +3,26 @@
   <head>
     <meta charset="utf-8">
     <title>tournament Viewer</title>
+    <link rel="stylesheet" href="../css/stylesheet.css"/>
     <style>
       body{
-        background-image: url('../images/{{back}}.jpg');
+        background-image: url({{back}});
         background-repeat: no-repeat;
         background-size: cover;
         /* background-position: center; */
-        color: '{{color}}';
-        font-family: '{{font}}';
+      }
+      #bracket{
+        font-family: {{font}};
+        color: {{color}};
       }
     </style>
   </head>
   <body>
+    <div id="invisible">
+      <p id="color">{{color}}</p>
+      <p id="font">{{font}}</p>
+    </div>
+    <h1 id="tournament_title">{{title}}</h1>
     <div id="bracket">
       {% for i in users%}
       <div class="brackets">
@@ -22,5 +30,6 @@
       </div>
       {% endfor %}
     </div>
+    <script type="text/javascript" src="../script/script.js"></script>
   </body>
 </html>
