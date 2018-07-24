@@ -114,16 +114,6 @@ class TournamentCreatorPage(webapp2.RequestHandler):
         if self.request.get('loser_bracket') == 'yes':
             loser_bracket = True
 
-        public = self.request.get('public')
-        new_tournament = Tournaments(name = name)
-            background_image = background_image
-            bracket_style =
-            loser_bracket =
-            public = ndb.BooleanProperty(required = True)
-            players = ndb.StringProperty(repeated = True)
-            champions = ndb.StringProperty()
-            timer = ndb.IntegerProperty())
-
         else:
             loser_bracket = False
         if self.request.get('public') == 'yes':
