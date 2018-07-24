@@ -101,14 +101,14 @@ class TournamentCreatorPage(webapp2.RequestHandler):
     def post(self):
         name = self.request.get('name')
         background_image = self.request.get('background_image')
-        if background_image = ''
+        if background_image == '':
             background_image = self.request.get('background')
         bracket_style_font = self.request.get('style-font')
         bracket_style_color = self.request.get('style-color')
-        if self.request.get('loser_bracket') = 'yes'
+        if self.request.get('loser_bracket') == 'yes':
             loser_bracket = True
         public = self.request.get('public')
-        new_tournament = Tournaments(name = name
+        new_tournament = Tournaments(name = name)
             background_image = background_image
             bracket_style =
             loser_bracket =
