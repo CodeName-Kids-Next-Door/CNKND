@@ -30,12 +30,12 @@ class MainPage(webapp2.RequestHandler):
                 main_template = \
                      jinja_current_directory.get_template('templates/main.html')
                 self.response.write(main_template.render())
-                self.response.write('''
-                    <h2>Welcome %s %s (%s)!</h2> <br> <a href="profile">Profile</a> <br> %s <br>''' %
-                    (cssi_user.first_name,
-                    cssi_user.last_name,
-                    email_address,
-                    signout_link_html))
+                # self.response.write('''
+                #     <h2>Welcome %s %s (%s)!</h2> <br> <a href="profile">Profile</a> <br> %s <br>''' %
+                #     (cssi_user.first_name,
+                #     cssi_user.last_name,
+                #     email_address,
+                #     signout_link_html))
 
 class LoginPage(webapp2.RequestHandler):
     # def get(self):
@@ -167,13 +167,6 @@ class TournamentCreatorPage(webapp2.RequestHandler):
         # ident = key.id()
         # profile = key.get()
         # p = Profiles.get_or_insert(key)
-        p = Profiles().query(Profiles.first_name == cssi_user.first_name).fetch()
-
-        first_prolist.list_tournaments.append(str(new_tournament.name))
-        for i in p:
-            if i.first_name == new_tournament.creator:
-                i.tournaments_created = first_prolist.list_tournaments
-                i.put()
         tourn_query = Tournaments().query().fetch()
         profile_query = Profiles().query().fetch()
         tourn_dict = {'all': tourn_query,
