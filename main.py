@@ -53,6 +53,7 @@ class LoginPage(webapp2.RequestHandler):
                     <h2>Welcome to our site, %s! Please sign up!</h2> <br>
                     <form method="post">
                     <input name="first_name" placeholder='First Name'/>
+                    <br>
                     <input name="last_name" placeholder='Last Name'/>
                     <input type="submit"/>
                     </form><br> %s <br>''' % (email_address, signout_link_html))
@@ -104,17 +105,15 @@ class TournamentCreatorPage(webapp2.RequestHandler):
         if self.request.get("timer") == 'yes':
             timer = 999
         background_image = self.request.get('background_image')
-<<<<<<< HEAD
-=======
+
         print background_image
->>>>>>> 655aa6e2843b4c5573d426828ed0802478897cb0
         if background_image == '':
             background_image = self.request.get('background')
         bracket_style_font = self.request.get('style-font')
         bracket_style_color = self.request.get('style-color')
         if self.request.get('loser_bracket') == 'yes':
             loser_bracket = True
-<<<<<<< HEAD
+
         public = self.request.get('public')
         new_tournament = Tournaments(name = name)
             background_image = background_image
@@ -125,7 +124,6 @@ class TournamentCreatorPage(webapp2.RequestHandler):
             champions = ndb.StringProperty()
             timer = ndb.IntegerProperty())
 
-=======
         else:
             loser_bracket = False
         if self.request.get('public') == 'yes':
@@ -145,7 +143,6 @@ class TournamentCreatorPage(webapp2.RequestHandler):
         tourn_dict = {'all': tourn_query, 'font': new_tournament.background_font,'color': new_tournament.background_color, 'back': new_tournament.background_image}
         tournament_Viewer_template = jinja_current_directory.get_template('templates/tournament_Viewer.html')
         self.response.write(tournament_Viewer_template.render(tourn_dict))
->>>>>>> 655aa6e2843b4c5573d426828ed0802478897cb0
 
 class TournmanetParticipatePage(webapp2.RequestHandler):
     def get(self):
