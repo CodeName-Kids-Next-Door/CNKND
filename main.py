@@ -100,23 +100,36 @@ class TournamentCreatorPage(webapp2.RequestHandler):
         self.response.write(tournament_Creator_template.render())
     def post(self):
         name = self.request.get('name')
+        timer = 0
+        if self.request.get("timer") == 'yes':
+            timer = 999
         background_image = self.request.get('background_image')
-        if background_image = ''
+        print background_image
+        if background_image == '':
             background_image = self.request.get('background')
         bracket_style_font = self.request.get('style-font')
         bracket_style_color = self.request.get('style-color')
-        if self.request.get('loser_bracket') = 'yes'
+        if self.request.get('loser_bracket') == 'yes':
             loser_bracket = True
-        public = self.request.get('public')
-        new_tournament = Tournaments(name = name
-            background_image = background_image
-            bracket_style =
-            loser_bracket =
-            public = ndb.BooleanProperty(required = True)
-            players = ndb.StringProperty(repeated = True)
-            champions = ndb.StringProperty()
-            timer = ndb.IntegerProperty())
-
+        else:
+            loser_bracket = False
+        if self.request.get('public') == 'yes':
+            public = True
+        else:
+            public = False
+        new_tournament = Tournaments(name = name,
+            background_image = background_image,
+            background_color = bracket_style_color,
+            background_font = bracket_style_font,
+            loser_bracket = loser_bracket,
+            public = public)
+        new_tournament.put()
+        print bracket_style_color
+        print bracket_style_font
+        tourn_query = Tournaments().query().fetch()
+        tourn_dict = {'all': tourn_query, 'font': new_tournament.background_font,'color': new_tournament.background_color, 'back': new_tournament.background_image}
+        tournament_Viewer_template = jinja_current_directory.get_template('templates/tournament_Viewer.html')
+        self.response.write(tournament_Viewer_template.render(tourn_dict))
 
 class TournmanetParticipatePage(webapp2.RequestHandler):
     def get(self):
