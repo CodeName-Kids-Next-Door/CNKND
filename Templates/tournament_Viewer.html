@@ -3,9 +3,24 @@
   <head>
     <meta charset="utf-8">
     <title>tournament Viewer</title>
+    <style>
+      body{
+        background-image: url('../images/{{back}}.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        /* background-position: center; */
+        color: '{{color}}';
+        font-family: '{{font}}';
+      }
+    </style>
   </head>
   <body>
     <div id="bracket">
+      {% for i in all%}
+      <div class="brackets">
+        <h3 class="player">i.name</h3>
+      </div>
+      {% endfor %}
     </div>
   </body>
 </html>
