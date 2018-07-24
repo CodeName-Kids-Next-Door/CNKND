@@ -16,9 +16,9 @@
   </head>
   <body>
     <div id="bracket">
-      {% for i in all%}
+      {% for i in users%}
       <div class="brackets">
-        <h3 class="player">i.name</h3>
+        <h3 class="player">{{i.first_name}}</h3>
       </div>
       {% endfor %}
     </div>
