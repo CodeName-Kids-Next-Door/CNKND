@@ -53,6 +53,7 @@ class LoginPage(webapp2.RequestHandler):
                     <h2>Welcome to our site, %s! Please sign up!</h2> <br>
                     <form method="post">
                     <input name="first_name" placeholder='First Name'/>
+                    <br>
                     <input name="last_name" placeholder='Last Name'/>
                     <input type="submit"/>
                     </form><br> %s <br>''' % (email_address, signout_link_html))
@@ -104,6 +105,7 @@ class TournamentCreatorPage(webapp2.RequestHandler):
         if self.request.get("timer") == 'yes':
             timer = 999
         background_image = self.request.get('background_image')
+
         print background_image
         if background_image == '':
             background_image = self.request.get('background')
@@ -111,6 +113,17 @@ class TournamentCreatorPage(webapp2.RequestHandler):
         bracket_style_color = self.request.get('style-color')
         if self.request.get('loser_bracket') == 'yes':
             loser_bracket = True
+
+        public = self.request.get('public')
+        new_tournament = Tournaments(name = name)
+            background_image = background_image
+            bracket_style =
+            loser_bracket =
+            public = ndb.BooleanProperty(required = True)
+            players = ndb.StringProperty(repeated = True)
+            champions = ndb.StringProperty()
+            timer = ndb.IntegerProperty())
+
         else:
             loser_bracket = False
         if self.request.get('public') == 'yes':
