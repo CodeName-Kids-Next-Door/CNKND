@@ -14,8 +14,9 @@ jinja_current_directory = jinja2.Environment(
     autoescape = True)
 
 class ProList(object):
-    def __init__(self, prolist):
+    def __init__(self, prolist, list_tournaments = []):
         self.prolist = prolist
+        self.list_tournaments = list_tournaments
         pass
 first_prolist = ProList(0)
 class MainPage(webapp2.RequestHandler):
@@ -85,11 +86,13 @@ class LoginPage(webapp2.RequestHandler):
         cssi_user.put()
         new_profile = Profiles(name = cssi_user.profiles, first_name = cssi_user.first_name)
         new_profile.put()
-        first_prolist.prolist = new_profile.id()
         self.response.write('Thanks for signing up, %s'% cssi_user.first_name)
         self.response.write('''<br><a href="profile">Your Profile<a>''')
 class ProfilePage(webapp2.RequestHandler):
     def get(self):
+        profile_template = \
+                jinja_current_directory.get_template('templates/profile.html')
+        self.response.write(profile_template.render())
         user = users.get_current_user()
         if user:
             email_address = user.nickname()
@@ -102,9 +105,6 @@ class ProfilePage(webapp2.RequestHandler):
                     cssi_user.last_name,
                     cssi_user.profiles,
                     signout_link_html))
-        profile_template = \
-                jinja_current_directory.get_template('templates/profile.html')
-        self.response.write(profile_template.render())
     def post(self):
         x=1
 
@@ -148,7 +148,8 @@ class TournamentCreatorPage(webapp2.RequestHandler):
             background_color = bracket_style_color,
             background_font = bracket_style_font,
             loser_bracket = loser_bracket,
-            public = public)
+            public = public,
+            creator = cssi_user.first_name)
         new_tournament.put()
         # new_profile_key = first_prolist.prolist
         # new_profile = new_profile_key.get()
@@ -160,10 +161,12 @@ class TournamentCreatorPage(webapp2.RequestHandler):
         # profile = key.get()
         # p = Profiles.get_or_insert(key)
         p = Profiles().query(Profiles.first_name == cssi_user.first_name).fetch()
-        list_tournaments = []
-        list_tournaments.append(new_tournament.name)
-        p[0].tournaments_created = list_tournaments
-        p[0].put()
+
+        first_prolist.list_tournaments.append(str(new_tournament.name))
+        for i in p:
+            if i.first_name == new_tournament.creator:
+                i.tournaments_created = first_prolist.list_tournaments
+                i.put()
         tourn_query = Tournaments().query().fetch()
         profile_query = Profiles().query().fetch()
         tourn_dict = {'all': tourn_query,
