@@ -60,7 +60,7 @@ class LoginPage(webapp2.RequestHandler):
         else:
             self.response.write('''
                 Please log in to use our site! <br>
-                <a href="%s">Sign in</a>''' % (users.create_login_url('/')))
+                <a href="%s">Sign in</a>''' % (users.create_login_url('/login')))
     def post(self):
         user = users.get_current_user()
         if not user:
@@ -130,7 +130,8 @@ class TournamentCreatorPage(webapp2.RequestHandler):
         print bracket_style_color
         print bracket_style_font
         tourn_query = Tournaments().query().fetch()
-        tourn_dict = {'all': tourn_query, 'font': new_tournament.background_font,'color': new_tournament.background_color, 'back': new_tournament.background_image}
+        profile_query = Users().query().fetch()
+        tourn_dict = {'all': tourn_query, 'users': profile_query,'font': new_tournament.background_font,'color': new_tournament.background_color, 'back': new_tournament.background_image}
         tournament_Viewer_template = jinja_current_directory.get_template('templates/tournament_Viewer.html')
         self.response.write(tournament_Viewer_template.render(tourn_dict))
 
