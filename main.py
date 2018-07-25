@@ -81,6 +81,7 @@ class LoginPage(webapp2.RequestHandler):
             first_name = self.request.get('first_name'),
             last_name = self.request.get('last_name'),
             profiles = self.request.get('profile_name'),
+            is_login = True,
             id= user.user_id())
         cssi_user.put()
         new_profile = Profiles(name = cssi_user.profiles, first_name = cssi_user.first_name)
@@ -89,10 +90,12 @@ class LoginPage(webapp2.RequestHandler):
         self.response.write('''<br><a href="profile">Your Profile<a>''')
 class ProfilePage(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        logout_link = users.create_logout_url('/')
+        logout_dict = {'logout': logout_link}
         profile_template = \
                 jinja_current_directory.get_template('templates/profile.html')
-        self.response.write(profile_template.render())
-        user = users.get_current_user()
+        self.response.write(profile_template.render(logout_dict))
         if user:
             email_address = user.nickname()
             cssi_user = Users.get_by_id(user.user_id())
@@ -136,6 +139,7 @@ class TournamentCreatorPage(webapp2.RequestHandler):
         if self.request.get("timer") == 'yes':
             timer = 999
         background_image = self.request.get('background_image')
+
         if background_image == '':
             background_image = self.request.get('background')
         bracket_style_font = self.request.get('style_font')
@@ -169,7 +173,7 @@ class TournamentCreatorPage(webapp2.RequestHandler):
         tourn_query = Tournaments().query().fetch()
         profile_query = Profiles().query().fetch()
         tourn_dict = {'all': tourn_query,
-            'users': profile_query,
+            'player': profile_query,
             'title': new_tournament.name,
             'font': new_tournament.background_font,
             'color': new_tournament.background_color,
@@ -188,13 +192,10 @@ class TournmanetViewerPage(webapp2.RequestHandler):
         tourn_query = Tournaments().query().fetch()
         profile_query = Users().query().fetch()
         tourn_dict = {'all': tourn_query,
-            'users': profile_query,
-            'font': new_tournament.background_font,
-            'color': new_tournament.background_color,
-            'back': new_tournament.background_image}
+            'player': profile_query}
         tournament_Viewer_template = \
             jinja_current_directory.get_template('templates/tournament_Viewer.html')
-        self.response.write(tournament_Viewer_template.render())
+        self.response.write(tournament_Viewer_template.render(tourn_dict))
 
 
 

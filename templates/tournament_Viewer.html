@@ -5,6 +5,29 @@
     <title>tournament Viewer</title>
     <link rel="stylesheet" href="../css/stylesheet.css"/>
     <style>
+      #style {
+        background-color: rgba(0, 0, 0, 0.25)
+      }
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+      }
+      li {
+        float: right;
+      }
+      li a {
+        display: block;
+        color: red;
+        text-align: left;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+      li a:hover {
+        background-color: #111;
+      }
       /* body{
         background-image: url({{back}});
         background-repeat: no-repeat;
@@ -15,6 +38,9 @@
         font-family: {{font}};
         color: {{color}};
       } */
+      ul{
+        background-color: rgba(51,51,51,0);
+      }
       html {
         height: 100%;
         width: 100%;
@@ -23,6 +49,9 @@
         font-family: sans-serif;
         margin: 0;
         height: 100%;
+        background-image: url({{back}});
+        background-repeat: no-repeat;
+        background-size: cover;
       }
       .tournament-headers {
         flex-grow: 1;
@@ -43,8 +72,10 @@
         display: flex;
         flex-direction: row;
         list-style-type: none;
-        background: #fdfdfd;
+        background: rgba(253,253,253,0.5);
         margin-bottom: 50px;
+        font-family: {{font}};
+        color: {{color}};
       }
       .bracket {
         padding-left: 0;
@@ -59,7 +90,7 @@
         flex: 1;
       }
       .team-item {
-        background-color: #f4f4f4;
+        background-color: rgba(244,244,244,0.5);
         padding: .5rem;
         display: block;
         margin: .5rem 10px;
@@ -141,6 +172,14 @@
     </style>
   </head>
   <body>
+    <div id = "style">
+      <ul>
+          <li><a class="active" href="/">Home</a></li>
+          <li><a href="/">Logout</a></li>
+          <li><a href="/profile">Edit Profile</a></li>
+          <li><a href="/tournamentCreator">Create</a></li>
+        </ul>
+    </div>
     <!-- <div id="invisible">
       <p id="color">{{color}}</p>
       <p id="font">{{font}}</p>
@@ -165,7 +204,7 @@
 
   <div class="tournament-brackets">
     <ul class="bracket bracket-1">
-      <li class="team-item">Alexs <time>{{time}}</time> Jeff </li>
+      <li class="team-item">{{player}}<time>{{time}}</time>{{player2}}</li>
       <li class="team-item">{{player}}<time>{{time}}</time>{{player2}}</li>
       <li class="team-item">{{player}}<time>{{time}}</time>{{player2}}</li>
       <li class="team-item">{{player}}<time>{{time}}</time>{{player2}}</li>
@@ -185,11 +224,11 @@
       <li class="team-item">{{player}}<time>{{time}}</time>{{player2}}</li>
     </ul>
     <ul class="bracket bracket-4">
-      <li class="team-item">{{player}}<time>{time}</time>{{player2}}</li>
+      <li class="team-item">{{player}}<time>{{time}}</time>{{player2}}</li>
     </ul>
 
     <ul class="bracket bracket-5">
-      <li class="team-item">{{}}</li>
+      <li class="team-item">{{player}}</li>
     </ul>
   </body>
 </html>
