@@ -64,6 +64,8 @@
         border-right: 1px dashed #ccc;
         margin: 0;
         padding: 1rem;
+        color: DarkGrey;
+        text-shadow: 2px 2px Black;
       }
       .tournament-brackets {
         display: flex;
@@ -203,9 +205,24 @@
   <div class="tournament-brackets">
     <ul class="bracket bracket-1">
       {% for p in pairs %}
-        <li class="team-item">{{p[0]}}<em> vs </em><!--<time>{{time}}</time>-->{{p[1]}}</li>
+        <li class="team-item"><button type="submit">Winner</button><p id="player1">{{p[0]}}</p><em> vs </em><!--<time>{{time}}</time>--><p id="player2">{{p[1]}}</p><button type="submit">Winner</button></li>
       {% endfor %}
     </ul>
 
+    <ul class="bracket bracket-2">
+      {% for p in range((player|length / 4)|round|int) %}
+        <li class="team-item" id="winner"> <em> vs </em> </li>
+      {% endfor %}
+    </ul>
+    <ul class="bracket bracket-3">
+      {% for p in range((player|length / 8)|round|int) %}
+        <li class="team-item" id="winner"> <em> vs </em> </li>
+      {% endfor %}
+    </ul>
+    <ul class="bracket bracket-4">
+      {% for p in range((player|length / 16)|round|int) %}
+        <li class="team-item" id="winner"> <em> vs </em> </li>
+      {% endfor %}
+    </ul>
   </body>
 </html>
