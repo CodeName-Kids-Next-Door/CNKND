@@ -2,18 +2,22 @@
 <html lang="en" dir="ltr">
   <head>
     <style media="screen">
+      .signup{
+        text-align: center;
+        font-size: 25px;
+      }
       .highlight{
         background-color: black;
       }
       body{
         margin: 0;
       }
-      #style {
+      /* .style {
         padding: 0 0;
-        background-color: white;
+        background-image: url("http://7-themes.com/data_images/collection/4/4456012-3d-wallpapers.jpg");
         background-repeat: no-repeat;
         background-size: cover;
-      }
+      } */
       ul {
         list-style-type: none;
         margin: 0;
@@ -41,13 +45,12 @@
       }
       h2{
         font-size: 25px;
-        color: white;
+        color: red;
         text-align: center;
         text-shadow: 4px 4px 10px red;
       }
       h3{
-        text-align: left;
-        margin-left: 150px;
+        text-align: center;
         font-size: 13px;
       }
       img{
@@ -80,42 +83,58 @@
     <title>Login</title>
   </head>
   <body>
-    <div id = "style">
-      <ul>
-        <li><a class="active" href="/">Home</a></li>
-        <li><a href="/login" class="highlight">Login</a></li>
-        <li><a href="/profile">Profile</a></li>
-        <li><a href="/tournamentCreator">Create</a></li>
-        <h3> Tournament Bracket Generator </h3>
-      </ul>
-    </div>
-    <br>
-    <body>
-    <form method="get" action="http://localhost:8080/_ah/login"
-          style="text-align:center; font: 13px sans-serif">
-      <div style="width: 20em; margin: 1em auto;
-                  text-align:left;
-                  padding: 0 2em 1.25em 2em;
-                  background-color: #d6e9f8;
-                  border: 2px solid #67a7e3">
-        <h3>Not logged in</h3>
-        <p style="padding: 0; margin: 0">
-          <label for="email" style="width: 3em">Email:</label>
-          <input name="email" type="email" value="test@example.com" id="email"/>
-        </p>
-        <p style="margin: .5em 0 0 3em; font-size:12px">
-          <input name="admin" type="checkbox" value="True"
-            id="admin"/>
-            <label for="admin">Sign in as Administrator</label>
-        </p>
-        <p style="margin-left: 3em">
-          <input name="action" value="Login" type="submit"
-                 id="submit-login" />
-          <!-- <input name="action" value="Logout" type="submit"
-                 id="submit-logout" /> -->
-        </p>
+    <div class="great">
+      <div class = "style">
+        <ul>
+          <li><a class="active" href="/">Home</a></li>
+          <li><a href="/login" class="highlight">Login</a></li>
+          <li><a href="/profile">Profile</a></li>
+          <li><a href="/tournamentCreator">Create</a></li>
+          <h3> Tournament Bracket Generator </h3>
+        </ul>
       </div>
-      <input name="continue" type="hidden" value="http://localhost:8080/login"/>
-    </form>
+      <br>
+      <body>
+      <form class="image" method="get" action="http://localhost:8080/_ah/login"
+            style="text-align:center; font: 13px sans-serif">
+            <h2>Already a User? Sign in below!</h2>
+        <div style="width: 20em; margin: 1em auto;
+                    text-align:left;
+                    padding: 0 2em 1.25em 2em;
+                    background-color: #d6e9f8;
+                    border: 2px solid #67a7e3">
+          <h3>Not logged in</h3>
+          <p style="padding: 0; margin: 0">
+            <label for="email" style="width: 3em">Email:</label>
+            <input name="email" type="email" value="test@example.com" id="email"/>
+          </p>
+          <p style="margin: .5em 0 0 3em; font-size:12px">
+            <input name="admin" type="checkbox" value="True"
+              id="admin"/>
+              <label for="admin">Sign in as Administrator</label>
+          </p>
+          <p style="margin-left: 3em">
+            <input name="action" value="Login" type="submit"
+                   id="submit-login" />
+            <!-- <input name="action" value="Logout" type="submit"
+                   id="submit-logout" /> -->
+          </p>
+        </div>
+        <input name="continue" type="hidden" value="http://localhost:8080/login"/>
+      </form>
+      <h2>Welcome to our site! Please sign up!</h2> <br>
+      <form method="post" class="signup">
+      <h3> Please enter your First Name </h3>
+      <input name="first_name" placeholder='First Name'/>
+      <br>
+      <h3> Please enter your Last Name </h3>
+      <input name="last_name" placeholder='Last Name'/>
+      <br>
+      <h3> Enter the username you wish to Appear on Tournmanets and on your Profile! </h3>
+      <input name="profile_name" placeholder="User Name"/>
+      <br>
+      <input type="submit"/>
+      </form>
+    </div>
   </body>
 </html>
