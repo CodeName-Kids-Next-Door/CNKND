@@ -5,6 +5,29 @@
     <title>tournament Viewer</title>
     <link rel="stylesheet" href="../css/stylesheet.css"/>
     <style>
+      #style {
+        background-color: rgba(0, 0, 0, 0.25)
+      }
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+      }
+      li {
+        float: right;
+      }
+      li a {
+        display: block;
+        color: red;
+        text-align: left;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+      li a:hover {
+        background-color: #111;
+      }
       /* body{
         background-image: url({{back}});
         background-repeat: no-repeat;
@@ -149,6 +172,14 @@
     </style>
   </head>
   <body>
+    <div id = "style">
+      <ul>
+          <li><a class="active" href="/">Home</a></li>
+          <li><a href="/">Logout</a></li>
+          <li><a href="/profile">Edit Profile</a></li>
+          <li><a href="/tournamentCreator">Create</a></li>
+        </ul>
+    </div>
     <!-- <div id="invisible">
       <p id="color">{{color}}</p>
       <p id="font">{{font}}</p>
