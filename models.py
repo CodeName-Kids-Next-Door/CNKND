@@ -23,6 +23,7 @@ class Users(ndb.Model):
     first_name = ndb.StringProperty(required = True)
     last_name = ndb.StringProperty(required = True)
     profiles = ndb.StringProperty()
+    is_login = ndb.BooleanProperty()
 
 class Probabilities(ndb.Model):
     profile = ndb.StringProperty(required = True)
