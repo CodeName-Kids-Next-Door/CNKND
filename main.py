@@ -184,6 +184,14 @@ class TournamentCreatorPage(webapp2.RequestHandler):
             public = public,
             creator = cssi_user.first_name)
         new_tournament.put()
+
+        players = Profiles().query().fetch()
+        pairs = []
+        for i in range(0, len(players) / 2):
+            pairs.append([players[i].name, players[len(players) - i - 1].name])
+
+
+
         # new_profile_key = first_prolist.prolist
         # new_profile = new_profile_key.get()
         # url_string = new_profile_key.urlsafe()
@@ -196,6 +204,7 @@ class TournamentCreatorPage(webapp2.RequestHandler):
         tourn_query = Tournaments().query().fetch()
         profile_query = Profiles().query().fetch()
         tourn_dict = {'all': tourn_query,
+            'pairs': pairs,
             'player': profile_query,
             'title': new_tournament.name,
             'font': new_tournament.background_font,
