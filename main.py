@@ -169,7 +169,7 @@ class TournamentCreatorPage(webapp2.RequestHandler):
         tourn_query = Tournaments().query().fetch()
         profile_query = Profiles().query().fetch()
         tourn_dict = {'all': tourn_query,
-            'users': profile_query,
+            'player': profile_query,
             'title': new_tournament.name,
             'font': new_tournament.background_font,
             'color': new_tournament.background_color,
@@ -188,13 +188,10 @@ class TournmanetViewerPage(webapp2.RequestHandler):
         tourn_query = Tournaments().query().fetch()
         profile_query = Users().query().fetch()
         tourn_dict = {'all': tourn_query,
-            'users': profile_query,
-            'font': new_tournament.background_font,
-            'color': new_tournament.background_color,
-            'back': new_tournament.background_image}
+            'player': profile_query}
         tournament_Viewer_template = \
             jinja_current_directory.get_template('templates/tournament_Viewer.html')
-        self.response.write(tournament_Viewer_template.render())
+        self.response.write(tournament_Viewer_template.render(tourn_dict))
 
 
 
