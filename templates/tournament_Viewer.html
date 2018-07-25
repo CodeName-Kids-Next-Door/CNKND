@@ -202,27 +202,42 @@
 
   <div class="tournament-brackets">
     <ul class="bracket bracket-1">
-      <li class="team-item">{{player1}}<em> vs</em><!--<time>{{time}}</time>-->{{player2}}</li>
-      <li class="team-item">{{player2}}<em> vs</em><!--<time>{{time}}</time>-->{{player3}}</li>
-      <li class="team-item">{{player3}}<em> vs</em><!--<time>{{time}}</time>-->{{player4}}</li>
-      <li class="team-item">{{player4}}<em> vs</em><!--<time>{{time}}</time>-->{{player5}}</li>
-      <li class="team-item">{{player}}<em> vs</em><!--<time>{{time}}</time>-->{{player}}</li>
-      <li class="team-item">{{player}}<em> vs</em><!--<time>{{time}}</time>-->{{player}}</li>
-      <li class="team-item">{{player}}<em> vs</em><!--<time>{{time}}</time>-->{{player}}</li>
-      <li class="team-item">{{player}}<em> vs</em><!--<time>{{time}}</time>-->{{player}}</li>
+      {% for p in ({{player | length}}/2) %}
+        {% if (p is 0)%}
+          <li class="team-item">player[p].name<em> vs </em>player[({{player | length}})].name</li>
+        {% elif (p is 1)%}
+          <li class="team-item">player[p].name<em> vs </em>player[({{player | length}} - 2)].name</li>
+        {% else %}
+          <li class="team-item">player[p].name<em> vs </em>player[(p * 2)].name</li>
+        {% endelif %}
+      {% endfor %}
+      <!-- <li class="team-item">{{player1}}<em> vs </em><time>{{time}}</time>{{player2}}</li> -->
+      <!-- <li class="team-item">{{player2}}<em> vs </em><time>{{time}}</time>{{player3}}</li> -->
+      <!-- <li class="team-item">{{player3}}<em> vs </em><time>{{time}}</time>{{player4}}</li> -->
+      <!-- <li class="team-item">{{player4}}<em> vs </em><time>{{time}}</time>{{player5}}</li> -->
+      <!-- <li class="team-item">{{player}}<em> vs </em><time>{{time}}</time>{{player}}</li> -->
+      <!-- <li class="team-item">{{player}}<em> vs </em><time>{{time}}</time>{{player}}</li> -->
+      <!-- <li class="team-item">{{player}}<em> vs </em><time>{{time}}</time>{{player}}</li> -->
+      <!-- <li class="team-item">{{player}}<em> vs </em><time>{{time}}</time>{{player}}</li> -->
     </ul>
     <ul class="bracket bracket-2">
-      <li class="team-item" id="winner1">{{player}}<em> vs</em><!--<time>{{time}}</time>-->{{player9}}</li>
-      <li class="team-item" id="winner2">{{player}}<em> vs</em><!--<time>{{time}}</time>-->{{player9}}</li>
-      <li class="team-item" id="winner3">{{player}}<em> vs</em><!--<time>{{time}}</time>-->{{player9}}</li>
-      <li class="team-item" id="winner4">{{player}}<em> vs</em><!--<time>{{time}}</time>-->{{player9}}</li>
+      {% if {{player | length}} >= 2 %}
+      {% endif %}
+      <!-- <li class="team-item" id="winner1">{{player}}<em> vs </em><time>{{time}}</time>{{player9}}</li> -->
+      <!-- <li class="team-item" id="winner2">{{player}}<em> vs </em><time>{{time}}</time>{{player9}}</li> -->
+      <!-- <li class="team-item" id="winner3">{{player}}<em> vs </em><time>{{time}}</time>{{player9}}</li> -->
+      <!-- <li class="team-item" id="winner4">{{player}}<em> vs </em><time>{{time}}</time>{{player9}}</li> -->
     </ul>
     <ul class="bracket bracket-3">
-      <li class="team-item" id="winner1">{{player}}<em> vs</em><!--<time>{{time}}</time>-->{{player9}}</li>
-      <li class="team-item" id="winner2">{{player}}<em> vs</em><!--<time>{{time}}</time>-->{{player9}}</li>
+      {% if {{player | length}} >= 4 %}
+      {% endif %}
+      <!-- <li class="team-item" id="winner1">{{player}}<em> vs </em><time>{{time}}</time>{{player9}}</li> -->
+      <!-- <li class="team-item" id="winner2">{{player}}<em> vs </em><time>{{time}}</time>{{player9}}</li> -->
     </ul>
     <ul class="bracket bracket-4">
-      <li class="team-item" id="winner1">{{player}}<em> vs</em><!--<time>{{time}}</time>-->{{player9}}</li>
+      {% if {{player | length}} >= 8 %}
+      {% endif %}
+      <!-- <li class="team-item" id="winner1">{{player}}<em> vs </em><time>{{time}}</time>{{player9}}</li> -->
     </ul>
 
     <ul class="bracket bracket-5">
