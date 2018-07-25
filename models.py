@@ -3,20 +3,19 @@ from google.appengine.ext import ndb
 class Tournaments(ndb.Model):
     name = ndb.StringProperty(required = True)
     background_image = ndb.StringProperty()
-    background_color = ndb.StringProperty()
-    background_font = ndb.StringProperty()
-    loser_bracket = ndb.BooleanProperty()
+    background_color = ndb.StringProperty(required = True)
+    background_font = ndb.StringProperty(required = True)
+    loser_bracket = ndb.BooleanProperty(required = True)
     public = ndb.BooleanProperty(required = True)
     players = ndb.StringProperty(repeated = True)
     champions = ndb.StringProperty()
-    creator = ndb.StringProperty()
+    creator = ndb.StringProperty(required = True)
 
 class Profiles(ndb.Model):
     name = ndb.StringProperty(required = True)
     first_name = ndb.StringProperty(required =True)
     wins = ndb.IntegerProperty()
     loses = ndb.IntegerProperty()
-    tournaments_created = ndb.StringProperty(repeated = True)
     tournaments_participated = ndb.StringProperty(repeated = True)
     championships = ndb.IntegerProperty()
 
