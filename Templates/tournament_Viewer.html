@@ -64,6 +64,8 @@
         border-right: 1px dashed #ccc;
         margin: 0;
         padding: 1rem;
+        color: DarkGrey;
+        text-shadow: 2px 2px Black;
       }
       .tournament-brackets {
         display: flex;
@@ -207,5 +209,20 @@
       {% endfor %}
     </ul>
 
+    <ul class="bracket bracket-2">
+      {% for p in range((player|length / 4)|round|int) %}
+        <li class="team-item" id="winner"> <em> vs </em> </li>
+      {% endfor %}
+    </ul>
+    <ul class="bracket bracket-3">
+      {% for p in range((player|length / 8)|round|int) %}
+        <li class="team-item" id="winner"> <em> vs </em> </li>
+      {% endfor %}
+    </ul>
+    <ul class="bracket bracket-4">
+      {% for p in range((player|length / 16)|round|int) %}
+        <li class="team-item" id="winner"> <em> vs </em> </li>
+      {% endfor %}
+    </ul>
   </body>
 </html>
