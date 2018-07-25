@@ -205,7 +205,7 @@
   <div class="tournament-brackets">
     <ul class="bracket bracket-1">
       {% for p in pairs %}
-        <li class="team-item">{{p[0]}}<em> vs </em><!--<time>{{time}}</time>-->{{p[1]}}</li>
+        <li class="team-item"><button type="submit">Winner</button><p id="player1">{{p[0]}}</p><em> vs </em><!--<time>{{time}}</time>--><p id="player2">{{p[1]}}</p><button type="submit">Winner</button></li>
       {% endfor %}
     </ul>
 
