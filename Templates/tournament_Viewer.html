@@ -204,14 +204,14 @@
 
   <div class="tournament-brackets">
     <ul class="bracket bracket-1">
-      {% for p in pairs %}
-        <li class="team-item"><button name="winner" value="player1" type="submit">Winner</button><p id="player1">{{p[0]}}</p><em> vs </em><!--<time>{{time}}</time>--><p id="player2">{{p[1]}}</p><button name="winner" value="player2" type="submit">Winner</button></li>
+      {% for p in range((pairs|length)) %}
+        <li class="team-item" id="winner{{p}}"><button name="winner" value="player1" type="submit">Winner</button><p id="player1">{{pairs[p][0]}}</p><em> vs </em><!--<time>{{time}}</time>--><p id="player2">{{pairs[p][1]}}</p><button name="winner" value="player2" type="submit">Winner</button></li>
       {% endfor %}
     </ul>
 
     <ul class="bracket bracket-2">
       {% for p in range((player|length / 4)|round|int) %}
-        <li class="team-item" id="winner"> <em> vs </em> </li>
+        <li class="team-item" id="winner2{{p}}"> <em> vs </em> </li>
       {% endfor %}
     </ul>
     <ul class="bracket bracket-3">

@@ -190,18 +190,6 @@ class TournamentCreatorPage(webapp2.RequestHandler):
         pairs = []
         for i in range(0, len(players) / 2):
             pairs.append([players[i].name, players[len(players) - i - 1].name])
-
-
-
-        # new_profile_key = first_prolist.prolist
-        # new_profile = new_profile_key.get()
-        # url_string = new_profile_key.urlsafe()
-        # new_profile_key = ndb.Key(urlsafe=url_string)
-        # key = Key(urlsafe=url_string)
-        # kind_string = key.kind()
-        # ident = key.id()
-        # profile = key.get()
-        # p = Profiles.get_or_insert(key)
         tourn_query = Tournaments().query().fetch()
         profile_query = Profiles().query().fetch()
         tourn_dict = {'all': tourn_query,
@@ -211,7 +199,6 @@ class TournamentCreatorPage(webapp2.RequestHandler):
             'font': new_tournament.background_font,
             'color': new_tournament.background_color,
             'back': new_tournament.background_image}
-        tournament_Viewer_template = jinja_current_directory.get_template('templates/tournament_Viewer.html')
         self.redirect('/tournamentViewer?id=' + view_id)
 
 class TournmanetParticipatePage(webapp2.RequestHandler):

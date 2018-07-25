@@ -10,6 +10,9 @@ class Tournaments(ndb.Model):
     players = ndb.StringProperty(repeated = True)
     champions = ndb.StringProperty()
     creator = ndb.StringProperty(required = True)
+    round1 = ndb.StringProperty(repeated = True)
+    round2 = ndb.StringProperty(repeated = True)
+    round3 = ndb.StringProperty(repeated = True)
 
 class Profiles(ndb.Model):
     name = ndb.StringProperty(required = True)
