@@ -2,6 +2,9 @@
 <html lang="en" dir="ltr">
   <head>
     <style media="screen">
+      .highlight{
+        background-color: black;
+      }
       form{
         /* margin-left: 10px; */
         text-align: center;
@@ -80,15 +83,15 @@
     <title>Tournament Creator</title>
   </head>
   <body>
+    <div id = "style">
+    <ul>
+      <li><a class="active" href="/">Home</a></li>
+      <li><a href="{{logout}}">Logout</a></li>
+      <li><a href="/profile">Profile</a></li>
+      <li><a href="/tournamentCreator" class="highlight">Create</a></li>
+    </ul>
+    </div>
     <form method="post" id="form">
-      <div id = "style">
-      <ul>
-        <li><a class="active" href="/">Home</a></li>
-        <li><a href="{{logout}}">Logout</a></li>
-        <li><a href="/profile">Profile</a></li>
-        <li><a href="/tournamentCreator">Create</a></li>
-      </ul>
-      </div>
       <div class="body2">
       <br>
       <label for="name">What is the Name of this Tournament?</label>

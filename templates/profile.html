@@ -2,7 +2,9 @@
 <html lang="en" dir="ltr">
   <head>
     <style media = "screen">
-
+      .highlight{
+        background-color: black;
+      }
       .friends{
         width: 250px;
         height: 300px;
@@ -91,11 +93,13 @@
       }
       .upcoming{
         width: 250px;
+        height: 300px;
         background-color: orange;
         flex-shrink: 0;
       }
       .past{
         width: 250px;
+        height: 300px;
         background-color: orange;
         flex-shrink: 0;
       }
@@ -108,7 +112,7 @@
       <ul>
           <li><a class="active" href="/">Home</a></li>
           <li><a href="{{logout}}">LogOut</a></li>
-          <li><a href="/profile">Edit Profile</a></li>
+          <li><a href="/profile" class = "highlight">Profile</a></li>
           <li><a href="/tournamentCreator">Create</a></li>
         </ul>
     </div>
@@ -117,7 +121,7 @@
 
       </div>
       <div class="name-bio">
-        <h3 class="name"> UnAuthorize </h3>
+        <h3 class="name"> {{UserName}} </h3>
         <p class="bio">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce non neque ut risus accumsan dictum vitae ut orci. Nullam hendrerit pellentesque tristique. Pellentesque et nulla pulvinar ex elementum venenatis. Nulla a mattis ante, vitae lobortis magna. Phasellus ipsum justo, elementum at dignissim vestibulum, vestibulum ut augue. Nunc at odio ut nisi molestie dictum. Proin quis est at quam bibendum vulputate.
 
