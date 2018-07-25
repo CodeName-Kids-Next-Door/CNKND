@@ -29,3 +29,6 @@ class Probabilities(ndb.Model):
     profile = ndb.StringProperty(required = True)
     strength = ndb.IntegerProperty(required = True)
     rank = ndb.IntegerProperty(required = True)
+
+class MatchWinner(ndb.Model):
+    winner = ndb.StringProperty(required = True)
