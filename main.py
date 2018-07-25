@@ -21,14 +21,23 @@ class ProList(object):
 first_prolist = ProList(0)
 class MainPage(webapp2.RequestHandler):
     def get(self):
+        logout_link = users.create_logout_url('/')
+        logout_dict = {'logout': logout_link, 'loader': "Logout"}
         user = users.get_current_user()
         if user:
             email_address = user.nickname()
             cssi_user = Users.get_by_id(user.user_id())
             signout_link_html = '<a href="%s">Sign Out</a>' % users.create_logout_url('/')
-        main_template = \
-             jinja_current_directory.get_template('templates/main.html')
-        self.response.write(main_template.render())
+            if cssi_user:
+                main_template = \
+                     jinja_current_directory.get_template('templates/main.html')
+                self.response.write(main_template.render(logout_dict))
+        else:
+            logout_dict['loader'] = "Login"
+            logout_dict['logout'] = "/login"
+            main_template = \
+                 jinja_current_directory.get_template('templates/main.html')
+            self.response.write(main_template.render(logout_dict))
                 # self.response.write('''
                 #     <h2>Welcome %s %s (%s)!</h2> <br> <a href="profile">Profile</a> <br> %s <br>''' %
                 #     (cssi_user.first_name,
@@ -42,15 +51,19 @@ class LoginPage(webapp2.RequestHandler):
     #           jinja_current_directory.get_template('templates/login.html')
     #     self.response.write(login_template.render())
     def get(self):
-        user = users.get_current_user()
+        logout_link = users.create_logout_url('/')
+        logout_dict = {'logout': '/login', 'loader': "Login"}
         main_template = \
                  jinja_current_directory.get_template('templates/login.html')
-        self.response.write(main_template.render())
+        user = users.get_current_user()
         if user:
             email_address = user.nickname()
             cssi_user = Users.get_by_id(user.user_id())
             signout_link_html = '<a href="%s">Sign Out</a>' % users.create_logout_url('/')
             if cssi_user:
+                logout_dict['loader'] = "Logout"
+                logout_dict['logout'] = logout_link
+                self.response.write(main_template.render(logout_dict))
                 self.response.write('''
                     <h2>Welcome %s %s (%s)!</h2> <br> <a href="profile">Profile</a> <br> %s <br>''' %
                     (cssi_user.first_name,
@@ -69,6 +82,7 @@ class LoginPage(webapp2.RequestHandler):
                     <input type="submit"/>
                     </form><br> %s <br>''' % (email_address, signout_link_html))
         else:
+            self.response.write(main_template.render(logout_dict))
             self.response.write('''
                 Please log in to use our site! <br>
                 <a href="%s">Sign in</a>''' % (users.create_login_url('/login')))
@@ -182,7 +196,7 @@ class TournamentCreatorPage(webapp2.RequestHandler):
         tourn_query = Tournaments().query().fetch()
         profile_query = Profiles().query().fetch()
         tourn_dict = {'all': tourn_query,
-            'player': '',
+            'player': profile_query,
             'title': new_tournament.name,
             'font': new_tournament.background_font,
             'color': new_tournament.background_color,
