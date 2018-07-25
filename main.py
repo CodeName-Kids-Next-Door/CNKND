@@ -81,7 +81,7 @@ class LoginPage(webapp2.RequestHandler):
             first_name = self.request.get('first_name'),
             last_name = self.request.get('last_name'),
             profiles = self.request.get('profile_name'),
-            is_login = True
+            is_login = True,
             id= user.user_id())
         cssi_user.put()
         new_profile = Profiles(name = cssi_user.profiles, first_name = cssi_user.first_name)
@@ -91,11 +91,11 @@ class LoginPage(webapp2.RequestHandler):
 class ProfilePage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
-        logout = user.create_logout_url('/')
-        logout_dict = {'logout': logout}
+        logout_link = users.create_logout_url('/')
+        logout_dict = {'logout': logout_link}
         profile_template = \
                 jinja_current_directory.get_template('templates/profile.html')
-        self.response.write(profile_template.render(logout))
+        self.response.write(profile_template.render(logout_dict))
         if user:
             email_address = user.nickname()
             cssi_user = Users.get_by_id(user.user_id())
