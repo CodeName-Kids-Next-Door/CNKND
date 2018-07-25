@@ -93,14 +93,14 @@ class ProfilePage(webapp2.RequestHandler):
         user = users.get_current_user()
         logout_link = users.create_logout_url('/')
         logout_dict = {'logout': logout_link}
-        profile_template = \
-                jinja_current_directory.get_template('templates/profile.html')
-        self.response.write(profile_template.render(logout_dict))
         if user:
             email_address = user.nickname()
             cssi_user = Users.get_by_id(user.user_id())
             signout_link_html = '<a href="%s">Sign Out</a>' % users.create_logout_url('/')
             if cssi_user:
+                profile_template = \
+                        jinja_current_directory.get_template('templates/profile.html')
+                self.response.write(profile_template.render(logout_dict))
                 self.response.write('''
                     Welcome %s %s (%s)! <br> %s <br>''' %
                     (cssi_user.first_name,
@@ -113,6 +113,8 @@ class ProfilePage(webapp2.RequestHandler):
 class TournamentCreatorPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
+        logout_link = users.create_logout_url('/')
+        logout_dict = {'logout': logout_link}
         if user:
             email_address = user.nickname()
             cssi_user = Users.get_by_id(user.user_id())
@@ -120,7 +122,7 @@ class TournamentCreatorPage(webapp2.RequestHandler):
             if cssi_user:
                 tournament_Creator_template = \
                    jinja_current_directory.get_template('templates/tournament_Creator.html')
-                self.response.write(tournament_Creator_template.render())
+                self.response.write(tournament_Creator_template.render(logout_dict))
         else:
             self.response.write('''
                 Please log in to use our site! <br>
@@ -137,9 +139,16 @@ class TournamentCreatorPage(webapp2.RequestHandler):
         name = self.request.get('name')
         timer = 0
         if self.request.get("timer") == 'yes':
-            timer = 999
+            timer = self.request.get('timer1')
         background_image = self.request.get('background_image')
-
+        player1 = self.request.get('player1')
+        player2 = self.request.get('player2')
+        player3 = self.request.get('player3')
+        player4 = self.request.get('player4')
+        player5 = self.request.get('player5')
+        player6 = self.request.get('player6')
+        player7 = self.request.get('player7')
+        player8 = self.request.get('player8')
         if background_image == '':
             background_image = self.request.get('background')
         bracket_style_font = self.request.get('style_font')
@@ -173,11 +182,19 @@ class TournamentCreatorPage(webapp2.RequestHandler):
         tourn_query = Tournaments().query().fetch()
         profile_query = Profiles().query().fetch()
         tourn_dict = {'all': tourn_query,
-            'player': profile_query,
+            'player': '',
             'title': new_tournament.name,
             'font': new_tournament.background_font,
             'color': new_tournament.background_color,
-            'back': new_tournament.background_image}
+            'back': new_tournament.background_image,
+            'player1': player1,
+            'player2': player2,
+            'player3': player3,
+            'player4': player4,
+            'player5': player5,
+            'player6': player6,
+            'player7': player7,
+            'player8': player8}
         tournament_Viewer_template = jinja_current_directory.get_template('templates/tournament_Viewer.html')
         self.response.write(tournament_Viewer_template.render(tourn_dict))
 

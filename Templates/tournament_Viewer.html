@@ -13,7 +13,7 @@
         margin: 0;
         padding: 0;
         overflow: hidden;
-        background-color: #333;
+        background-color: rgba(51,51,51,0);
       }
       li {
         float: right;
@@ -38,9 +38,6 @@
         font-family: {{font}};
         color: {{color}};
       } */
-      ul{
-        background-color: rgba(51,51,51,0);
-      }
       html {
         height: 100%;
         width: 100%;
@@ -72,8 +69,9 @@
         display: flex;
         flex-direction: row;
         list-style-type: none;
-        background: rgba(253,253,253,0.5);
+        background: rgba(253,253,253,0.2);
         margin-bottom: 50px;
+        font-size: 20px;
         font-family: {{font}};
         color: {{color}};
       }
@@ -90,7 +88,7 @@
         flex: 1;
       }
       .team-item {
-        background-color: rgba(244,244,244,0.5);
+        background-color: rgba(244,244,244,0.2);
         padding: .5rem;
         display: block;
         margin: .5rem 10px;
@@ -204,27 +202,27 @@
 
   <div class="tournament-brackets">
     <ul class="bracket bracket-1">
-      <li class="team-item">{{player}}<time>{{time}}</time>{{player2}}</li>
-      <li class="team-item">{{player}}<time>{{time}}</time>{{player2}}</li>
-      <li class="team-item">{{player}}<time>{{time}}</time>{{player2}}</li>
-      <li class="team-item">{{player}}<time>{{time}}</time>{{player2}}</li>
-      <li class="team-item">{{player}}<time>{{time}}</time>{{player2}}</li>
-      <li class="team-item">{{player}}<time>{{time}}</time>{{player2}}</li>
-      <li class="team-item">{{player}}<time>{{time}}</time>{{player2}}</li>
-      <li class="team-item">{{player}}<time>{{time}}</time>{{player2}}</li>
+      <li class="team-item">{{player1}}<em> vs</em><time>{{time}}</time>{{player2}}</li>
+      <li class="team-item">{{player2}}<em> vs</em><time>{{time}}</time>{{player3}}</li>
+      <li class="team-item">{{player3}}<em> vs</em><time>{{time}}</time>{{player4}}</li>
+      <li class="team-item">{{player4}}<em> vs</em><time>{{time}}</time>{{player5}}</li>
+      <li class="team-item">{{player}}<em> vs</em><time>{{time}}</time>{{player}}</li>
+      <li class="team-item">{{player}}<em> vs</em><time>{{time}}</time>{{player}}</li>
+      <li class="team-item">{{player}}<em> vs</em><time>{{time}}</time>{{player}}</li>
+      <li class="team-item">{{player}}<em> vs</em><time>{{time}}</time>{{player}}</li>
     </ul>
     <ul class="bracket bracket-2">
-      <li class="team-item">{{player}}<time>{{time}}</time>{{player2}}</li>
-      <li class="team-item">{{player}}<time>{{time}}</time>{{player2}}</li>
-      <li class="team-item">{{player}}<time>{{time}}</time>{{player2}}</li>
-      <li class="team-item">{{player}}<time>{{time}}</time>{{player2}}</li>
+      <li class="team-item" id="winner1">{{player}}<em> vs</em><time>{{time}}</time>{{player9}}</li>
+      <li class="team-item" id="winner2">{{player}}<em> vs</em><time>{{time}}</time>{{player9}}</li>
+      <li class="team-item" id="winner3">{{player}}<em> vs</em><time>{{time}}</time>{{player9}}</li>
+      <li class="team-item" id="winner4">{{player}}<em> vs</em><time>{{time}}</time>{{player9}}</li>
     </ul>
     <ul class="bracket bracket-3">
-      <li class="team-item">{{player}}<time>{{time}}</time>{{player2}}</li>
-      <li class="team-item">{{player}}<time>{{time}}</time>{{player2}}</li>
+      <li class="team-item" id="winner1">{{player}}<em> vs</em><time>{{time}}</time>{{player9}}</li>
+      <li class="team-item" id="winner2">{{player}}<em> vs</em><time>{{time}}</time>{{player9}}</li>
     </ul>
     <ul class="bracket bracket-4">
-      <li class="team-item">{{player}}<time>{{time}}</time>{{player2}}</li>
+      <li class="team-item" id="winner1">{{player}}<em> vs</em><time>{{time}}</time>{{player9}}</li>
     </ul>
 
     <ul class="bracket bracket-5">

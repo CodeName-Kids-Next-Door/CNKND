@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <style media="screen">
-      .body2{
+      form{
         /* margin-left: 10px; */
         text-align: center;
         font-size: 20px;
@@ -84,7 +84,7 @@
       <div id = "style">
       <ul>
         <li><a class="active" href="/">Home</a></li>
-        <li><a href="/login">Login</a></li>
+        <li><a href="{{logout}}">Logout</a></li>
         <li><a href="/profile">Profile</a></li>
         <li><a href="/tournamentCreator">Create</a></li>
       </ul>
@@ -157,7 +157,7 @@
       </div>
       <div id="timer_dropdown"> <!--make this disappear-->
         <p>What is the time limit</P>
-          <input type="text" placeholder="Time Limit"/>
+          <input type="text" name="timer1" placeholder="Time Limit"/>
       </div>
       <label for="style_font">What kind of font do you want?</label>
       <select name="style_font">
@@ -172,14 +172,14 @@
       <br>
       <div id="players">
         <p>Who will be playing in this Tournament</p>
-        <input type="text" placeholder="Player1"/>
-        <input type="text" placeholder="Player2"/>
-        <input type="text" placeholder="Player3"/>
-        <input type="text" placeholder="Player4"/>
-        <input type="text" placeholder="Player5"/>
-        <input type="text" placeholder="Player6"/>
-        <input type="text" placeholder="Player7"/>
-        <input type="text" placeholder="Player8"/>
+        <input type="text" name="player1" placeholder="Player1"/>
+        <input type="text" name="player2" placeholder="Player2"/>
+        <input type="text" name="player3" placeholder="Player3"/>
+        <input type="text" name="player4" placeholder="Player4"/>
+        <input type="text" name="player5" placeholder="Player5"/>
+        <input type="text" name="player6" placeholder="Player6"/>
+        <input type="text" name="player7" placeholder="Player7"/>
+        <input type="text" name="player8" placeholder="Player8"/>
       </div>
       <br>
       <br>
