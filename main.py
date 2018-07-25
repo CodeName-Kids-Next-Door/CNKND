@@ -5,6 +5,7 @@ from models import Tournaments
 from models import Profiles
 from models import Probabilities
 from models import Users
+from models import MatchWinner
 from google.appengine.api import users
 from google.appengine.ext import ndb
 
@@ -183,8 +184,8 @@ class TournamentCreatorPage(webapp2.RequestHandler):
             loser_bracket = loser_bracket,
             public = public,
             creator = cssi_user.first_name)
-        new_tournament.put()
-
+        viewer = new_tournament.put()
+        view_id = viewer.urlsafe()
         players = Profiles().query().fetch()
         pairs = []
         for i in range(0, len(players) / 2):
@@ -209,17 +210,9 @@ class TournamentCreatorPage(webapp2.RequestHandler):
             'title': new_tournament.name,
             'font': new_tournament.background_font,
             'color': new_tournament.background_color,
-            'back': new_tournament.background_image,
-            'player1': player1,
-            'player2': player2,
-            'player3': player3,
-            'player4': player4,
-            'player5': player5,
-            'player6': player6,
-            'player7': player7,
-            'player8': player8}
+            'back': new_tournament.background_image}
         tournament_Viewer_template = jinja_current_directory.get_template('templates/tournament_Viewer.html')
-        self.response.write(tournament_Viewer_template.render(tourn_dict))
+        self.redirect('/tournamentViewer?id=' + view_id)
 
 class TournmanetParticipatePage(webapp2.RequestHandler):
     def get(self):
@@ -229,21 +222,35 @@ class TournmanetParticipatePage(webapp2.RequestHandler):
 
 class TournmanetViewerPage(webapp2.RequestHandler):
     def get(self):
-        tourn_query = Tournaments().query().fetch()
-        profile_query = Users().query().fetch()
+        tourn_id = self.request.get('id')
+        key = ndb.Key(urlsafe = tourn_id)
+        players = Profiles().query().fetch()
+        pairs = []
+        for i in range(0, len(players) / 2):
+            pairs.append([players[i].name, players[len(players) - i - 1].name])
+        tourn_query = key.get()
         tourn_dict = {'all': tourn_query,
-            'player': profile_query}
+            'pairs': pairs,
+            'player': players,
+            'title': tourn_query.name,
+            'font': tourn_query.background_font,
+            'color': tourn_query.background_color,
+            'back': tourn_query.background_image,}
         tournament_Viewer_template = \
             jinja_current_directory.get_template('templates/tournament_Viewer.html')
         self.response.write(tournament_Viewer_template.render(tourn_dict))
+    def post(self):
+        winner = self.request.get('winner')
+        new_match_winner = MatchWinner(winner)
+        new_match_winner.put()
+        print new_match_winner
+        pass
 
 
-
-app = webapp2.WSGIApplication([
-    ('/', MainPage),
+app = webapp2.WSGIApplication([('/', MainPage),
     ('/login', LoginPage),
     ('/profile', ProfilePage),
     ('/tournamentCreator', TournamentCreatorPage),
     ('/tournamentParticipate', TournmanetParticipatePage),
     ('/tournamentViewer', TournmanetViewerPage)
-], debug=True)
+], debug=False)
