@@ -228,7 +228,9 @@ class TournmanetViewerPage(webapp2.RequestHandler):
         self.response.write(tournament_Viewer_template.render(tourn_dict))
     def post(self):
         winner = self.request.get('winner')
-        new_match_winner = MatchWinner(winner)
+        tourn_id = self.request.get('id')
+        key = ndb.Key(urlsafe = tourn_id)
+        tourn = key.get()
         new_match_winner.put()
         print new_match_winner
         pass
