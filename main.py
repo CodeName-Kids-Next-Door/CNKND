@@ -26,10 +26,9 @@ class MainPage(webapp2.RequestHandler):
             email_address = user.nickname()
             cssi_user = Users.get_by_id(user.user_id())
             signout_link_html = '<a href="%s">Sign Out</a>' % users.create_logout_url('/')
-            if cssi_user:
-                main_template = \
-                     jinja_current_directory.get_template('templates/main.html')
-                self.response.write(main_template.render())
+        main_template = \
+             jinja_current_directory.get_template('templates/main.html')
+        self.response.write(main_template.render())
                 # self.response.write('''
                 #     <h2>Welcome %s %s (%s)!</h2> <br> <a href="profile">Profile</a> <br> %s <br>''' %
                 #     (cssi_user.first_name,
