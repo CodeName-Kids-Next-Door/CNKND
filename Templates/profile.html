@@ -61,7 +61,7 @@
       .bio{
         height: 80px;
         overflow: scroll;
-        
+
       }
       #style {
         background-color: rgba(0, 0, 0, 0.25)
@@ -104,6 +104,11 @@
         background-color: orange;
         flex-shrink: 0;
       }
+      .squad{
+        text-align: left;
+        margin-left: 150px;
+        font-size: 13px;
+      }
     </style>
     <meta charset="utf-8">
     <title>Your Profile Page</title>
@@ -112,9 +117,10 @@
     <div id = "style">
       <ul>
           <li><a class="active" href="/">Home</a></li>
-          <li><a href="{{logout}}">LogOut</a></li>
+          <li><a href="{{logout}}">Logout</a></li>
           <li><a href="/profile" class = "highlight">Profile</a></li>
           <li><a href="/tournamentCreator">Create</a></li>
+          <h3 class="squad">Code-Name: Kids Next Door</h3>
         </ul>
     </div>
     <div class="body">
