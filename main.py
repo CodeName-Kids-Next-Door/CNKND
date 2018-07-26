@@ -5,7 +5,6 @@ from models import Tournaments
 from models import Profiles
 from models import Probabilities
 from models import Users
-from models import MatchWinner
 from google.appengine.api import users
 from google.appengine.ext import ndb
 
