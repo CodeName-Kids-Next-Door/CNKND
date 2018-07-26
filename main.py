@@ -225,7 +225,7 @@ class TournmanetViewerPage(webapp2.RequestHandler):
             pairs2.append([str(tourn_query.round2[i]), str(tourn_query.round2[len(tourn_query.round2) - i - 1])])
         pairs3 = []
         for i in range(0, len(tourn_query.round3) / 2):
-            pairs2.append([str(tourn_query.round3[i]), str(tourn_query.round3[len(tourn_query.round3) - i - 1])])
+            pairs3.append([str(tourn_query.round3[i]), str(tourn_query.round3[len(tourn_query.round3) - i - 1])])
         tourn_dict = {'all': tourn_query,
             'pairs0': pairs0,
             'pairs1': pairs1,
@@ -255,7 +255,7 @@ class TournmanetViewerPage(webapp2.RequestHandler):
             pairs2.append([str(tourn.round2[i]), str(tourn.round2[len(tourn.round2) - i - 1])])
         pairs3 = []
         for i in range(0, len(tourn.round3) / 2):
-            pairs2.append([str(tourn.round3[i]), str(tourn.round3[len(tourn.round3) - i - 1])])
+            pairs3.append([str(tourn.round3[i]), str(tourn.round3[len(tourn.round3) - i - 1])])
         pairs3 = tourn.round3
         next_round1 = tourn.round1
         next_round2 = tourn.round2
@@ -364,10 +364,10 @@ class TournmanetViewerPage(webapp2.RequestHandler):
             self.redirect('/tournamentViewer?id=' + view_id)
         elif len(next_round4) < 1:
             if winner == "player310":
-                next_round4.append(pairs3[0])
+                next_round4.append(str(pairs3[0]))
                 pass
             elif winner == "player320":
-                next_round4.append(pairs3[1])
+                next_round4.append(str(pairs3[1]))
                 pass
             tourn.champions = next_round4
             tourn.put()
