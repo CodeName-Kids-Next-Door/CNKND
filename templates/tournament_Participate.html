@@ -2,9 +2,258 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Tournament Participator</title>
+    <title>tournament Participator</title>
+    <link rel="stylesheet" href="../css/stylesheet.css"/>
+    <style>
+      .highlight{
+        background-color: black;
+      }
+      #style {
+        background-color: rgba(0, 0, 0, 0.25)
+      }
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: rgba(51,51,51,0);
+      }
+      li {
+        float: right;
+      }
+      li a {
+        display: block;
+        color: red;
+        text-align: left;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+      li a:hover {
+        background-color: #111;
+      }
+      /* body{
+        background-image: url({{back}});
+        background-repeat: no-repeat;
+        background-size: cover;
+        /* background-position: center;
+        }*/
+      /* #bracket{
+        font-family: {{font}};
+        color: {{color}};
+      } */
+      html {
+        height: 100%;
+        width: 100%;
+      }
+      body {
+        font-family: sans-serif;
+        margin: 0;
+        height: 100%;
+        background-image: url({{back}});
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-color: Orangered;
+      }
+      .tournament-headers {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        border-bottom: 1px solid #ccc;
+      }
+      .tournament-headers h3 {
+        width: 25%;
+        text-align: center;
+        font-weight: 400;
+        border-right: 1px dashed #ccc;
+        margin: 0;
+        padding: 1rem;
+        color: DarkGrey;
+        text-shadow: 2px 2px Black;
+      }
+      .tournament-brackets {
+        display: flex;
+        flex-direction: row;
+        list-style-type: none;
+        background: rgba(253,253,253,0.2);
+        margin-bottom: 50px;
+        font-size: 20px;
+        font-family: {{font}};
+        color: {{color}};
+      }
+      .bracket {
+        padding-left: 0;
+        display: flex;
+        margin: 0;
+        /* padding: 30px 0; */
+        flex-grow: 1;
+        flex-direction: column;
+        justify-content: space-around;
+        list-style-type: none;
+        border-right: 1px dashed #ccc;
+        flex: 1;
+        font-size: 19.5px;
+      }
+      .team-item {
+        background-color: rgba(244,244,244,0.2);
+        padding: .5rem;
+        display: block;
+        margin: .5rem 10px;
+        position: relative;
+        vertical-align: middle;
+        /* line-height: 2; */
+        text-align: center;
+        display: flex;
+      }
+      .team-item:after {
+        content: '';
+        border-color: #4f7a38;
+        border-width: 2px;
+        position: absolute;
+        display: block;
+        width: 10px;
+        right: -11px;
+      }
+      .team-item:nth-of-type(odd):after {
+        border-right-style: solid;
+        border-top-style: solid;
+        height: 100%;
+        top: 50%;
+      }
+      .team-item:nth-of-type(even):after {
+        border-right-style: solid;
+        border-bottom-style: solid;
+        height: 100%;
+        top: -50%;
+      }
+      .team-item:before {
+        content: '';
+        border-top: 2px solid #4f7a38;
+        position: absolute;
+        height: 2px;
+        width: 10px;
+        left: -10px;
+        top: 50%;
+      }
+      .bracket-2 .team-item:nth-of-type(odd):after {
+        height: 200%;
+        top: 50%;
+      }
+      .bracket-2 .team-item:nth-of-type(even):after {
+        height: 200%;
+        top: -150%;
+      }
+      .bracket-3 .team-item:nth-of-type(odd):after {
+        height: 350%;
+        top: 50%;
+      }
+      .bracket-3 .team-item:nth-of-type(even):after {
+        height: 350%;
+        top: -300%;
+      }
+      .bracket-4 .team-item:nth-of-type(odd):after {
+        height: 700%;
+        top: 50%;
+      }
+      .bracket-4 .team-item:nth-of-type(even):after {
+        height: 700%;
+        top: -650%;
+      }
+      .bracket:first-of-type .team-item:before {
+        display: none;
+      }
+      .bracket-4 .team-item:after {
+        display: none;
+      }
+      .bracket:last-of-type .team-item:before,
+      .bracket:last-of-type .team-item:after {
+        display: none;
+      }
+      .team-item time {
+        display: inline-block;
+        background-color: #dbdbdb;
+        font-size: .8rem;
+        padding: 0 .6rem;
+      }
+    </style>
   </head>
   <body>
+    <div id = "style">
+      <ul>
+          <li><a class="active" href="/">Home</a></li>
+          <li><a href="/">Logout</a></li>
+          <li><a href="/profile">Profile</a></li>
+          <li><a href="/tournamentCreator" class="highlight">Tournmanet</a></li>
+        </ul>
+    </div>
+    <!-- <div id="invisible">
+      <p id="color">{{color}}</p>
+      <p id="font">{{font}}</p>
+    </div>
+    <h1 id="tournament_title">{{title}}</h1>
+    <div id="bracket">
+      {% for i in users%}
+      <div class="brackets">
+        <h3 class="player">{{i.first_name}}</h3>
+      </div>
+      {% endfor %}
+    </div>
+    <script type="text/javascript" src="../script/script.js"></script> -->
+    <div class="tournament-container">
+  <div class="tournament-headers">
+    <h3>Round of 16</h3>
+    <h3>Quarter-Finals</h3>
+    <h3>Semi-Finals</h3>
+    <h3>Final</h3>
+    <h3>Winner</h3>
+  </div>
 
+  <div class="tournament-brackets">
+    <ul class="bracket bracket-1">
+      {% for p in range((pairs0|length)) %}
+        <li class="team-item" id="winner{{p}}">
+          <p id="player1">{{pairs0[p][0]}}</p>
+          <em> vs </em>
+          <!--<time>{{time}}</time>-->
+          <p id="player2">{{pairs0[p][1]}}</p>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <ul class="bracket bracket-2">
+      {% for p in range((pairs1|length)) %}
+        <li class="team-item" id="winner{{p}}">
+          <p id="player1">{{pairs1[p][0]}}</p>
+          <em> vs </em>
+          <!--<time>{{time}}</time>-->
+          <p id="player2">{{pairs1[p][1]}}</p>
+        </li>
+      {% endfor %}
+    </ul>
+    <ul class="bracket bracket-3">
+      {% for p in range((pairs2|length)) %}
+        <li class="team-item" id="winner{{p}}">
+          <p id="player1">{{pairs2[p][0]}}</p>
+          <em> vs </em>
+          <!--<time>{{time}}</time>-->
+          <p id="player2">{{pairs2[p][1]}}</p>
+        </li>
+      {% endfor %}
+    </ul>
+    <ul class="bracket bracket-4">
+      {% for p in range((pairs3|length)) %}
+        <li class="team-item" id="winner{{p}}">
+          <p id="player1">{{pairs3[p][0]}}</p>
+          <em> vs </em>
+          <!--<time>{{time}}</time>-->
+          <p id="player2">{{pairs3[p][1]}}</p>
+        </li>
+      {% endfor %}
+    </ul>
+    <ul class="bracket bracket-5">
+      <li class="team-item" id="champions">
+        {{champions}}
+      </li>
+    </ul>
   </body>
 </html>

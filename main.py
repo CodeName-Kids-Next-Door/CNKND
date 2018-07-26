@@ -110,11 +110,11 @@ class ProfilePage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         logout_link = users.create_logout_url('/')
-        logout_dict = {'logout': logout_link}
         if user:
             email_address = user.nickname()
             cssi_user = Users.get_by_id(user.user_id())
             signout_link_html = '<a href="%s">Sign Out</a>' % users.create_logout_url('/')
+            logout_dict = {'logout': logout_link, 'profile': cssi_user.profiles}
             if cssi_user:
                 profile_template = \
                         jinja_current_directory.get_template('templates/profile.html')
@@ -205,9 +205,34 @@ class TournamentCreatorPage(webapp2.RequestHandler):
 
 class TournmanetParticipatePage(webapp2.RequestHandler):
     def get(self):
-        tournament_Participate_template = \
+        tourn_id = self.request.get('id')
+        key = ndb.Key(urlsafe = tourn_id)
+        tourn_query = key.get()
+        pairs0 = []
+        for i in range(0, len(tourn_query.round0) / 2):
+            pairs0.append([str(tourn_query.round0[i]), str(tourn_query.round0[len(tourn_query.round0) - i - 1])])
+        pairs1 = []
+        for i in range(0, len(tourn_query.round1) / 2):
+            pairs1.append([str(tourn_query.round1[i]), str(tourn_query.round1[len(tourn_query.round1) - i - 1])])
+        pairs2 = []
+        for i in range(0, len(tourn_query.round2) / 2):
+            pairs2.append([str(tourn_query.round2[i]), str(tourn_query.round2[len(tourn_query.round2) - i - 1])])
+        pairs3 = []
+        for i in range(0, len(tourn_query.round3) / 2):
+            pairs3.append([str(tourn_query.round3[i]), str(tourn_query.round3[len(tourn_query.round3) - i - 1])])
+        tourn_dict = {'all': tourn_query,
+            'pairs0': pairs0,
+            'pairs1': pairs1,
+            'pairs2': pairs2,
+            'pairs3': pairs3,
+            'champions': tourn_query.champions,
+            'title': tourn_query.name,
+            'font': tourn_query.background_font,
+            'color': tourn_query.background_color,
+            'back': tourn_query.background_image,}
+        tournament_Viewer_template = \
             jinja_current_directory.get_template('templates/tournament_Participate.html')
-        self.response.write(tournament_Participate_template.render())
+        self.response.write(tournament_Viewer_template.render(tourn_dict))
 
 class TournmanetViewerPage(webapp2.RequestHandler):
     def get(self):
@@ -240,141 +265,153 @@ class TournmanetViewerPage(webapp2.RequestHandler):
             jinja_current_directory.get_template('templates/tournament_Viewer.html')
         self.response.write(tournament_Viewer_template.render(tourn_dict))
     def post(self):
+        user = users.get_current_user()
         winner = self.request.get('winner')
         tourn_id = self.request.get('id')
         key = ndb.Key(urlsafe = tourn_id)
         tourn = key.get()
-        pairs0 = []
-        for i in range(0, len(tourn.round0) / 2):
-            pairs0.append([str(tourn.round0[i]), str(tourn.round0[len(tourn.round0) - i - 1])])
-        pairs1 = []
-        for i in range(0, len(tourn.round1) / 2):
-            pairs1.append([str(tourn.round1[i]), str(tourn.round1[len(tourn.round1) - i - 1])])
-        pairs2 = []
-        for i in range(0, len(tourn.round2) / 2):
-            pairs2.append([str(tourn.round2[i]), str(tourn.round2[len(tourn.round2) - i - 1])])
-        pairs3 = []
-        for i in range(0, len(tourn.round3) / 2):
-            pairs3.append([str(tourn.round3[i])])
-        next_round1 = tourn.round1
-        next_round2 = tourn.round2
-        next_round3 = tourn.round3
-        # next_round4 = tourn.champions
-        next_round4 = []
-        viewer = tourn.put()
-        view_id = viewer.urlsafe()
-        if len(next_round1) < 8:
-            if winner == "player10":
-                next_round1.append(pairs0[0][0])
+        if user:
+            email_address = user.nickname()
+            cssi_user = Users.get_by_id(user.user_id())
+            signout_link_html = '<a href="%s">Sign Out</a>' % users.create_logout_url('/')
+            if cssi_user.first_name == tourn.creator:
+                print cssi_user.profiles
+                pairs0 = []
+                for i in range(0, len(tourn.round0) / 2):
+                    pairs0.append([str(tourn.round0[i]), str(tourn.round0[len(tourn.round0) - i - 1])])
+                pairs1 = []
+                for i in range(0, len(tourn.round1) / 2):
+                    pairs1.append([str(tourn.round1[i]), str(tourn.round1[len(tourn.round1) - i - 1])])
+                pairs2 = []
+                for i in range(0, len(tourn.round2) / 2):
+                    pairs2.append([str(tourn.round2[i]), str(tourn.round2[len(tourn.round2) - i - 1])])
+                pairs3 = []
+                for i in range(0, len(tourn.round3) / 2):
+                    pairs3.append([str(tourn.round3[i])])
+                next_round1 = tourn.round1
+                next_round2 = tourn.round2
+                next_round3 = tourn.round3
+                # next_round4 = tourn.champions
+                next_round4 = []
+                viewer = tourn.put()
+                view_id = viewer.urlsafe()
+                if len(next_round1) < 8:
+                    if winner == "player10":
+                        next_round1.append(pairs0[0][0])
+                        pass
+                    elif winner == "player20":
+                        next_round1.append(pairs0[0][1])
+                        pass
+                    elif winner == "player11":
+                        next_round1.append(pairs0[1][0])
+                        pass
+                    elif winner == "player21":
+                        next_round1.append(pairs0[1][1])
+                        pass
+                    elif winner == "player12":
+                        next_round1.append(pairs0[2][0])
+                        pass
+                    elif winner == "player22":
+                        next_round1.append(pairs0[2][1])
+                        pass
+                    elif winner == "player13":
+                        next_round1.append(pairs0[3][0])
+                        pass
+                    elif winner == "player23":
+                        next_round1.append(pairs0[3][1])
+                        pass
+                    elif winner == "player14":
+                        next_round1.append(pairs0[4][0])
+                        pass
+                    elif winner == "player24":
+                        next_round1.append(pairs0[4][1])
+                        pass
+                    elif winner == "player15":
+                        next_round1.append(pairs0[5][0])
+                        pass
+                    elif winner == "player25":
+                        next_round1.append(pairs0[5][1])
+                        pass
+                    elif winner == "player16":
+                        next_round1.append(pairs0[6][0])
+                        pass
+                    elif winner == "player26":
+                        next_round1.append(pairs0[6][1])
+                        pass
+                    elif winner == "player17":
+                        next_round1.append(pairs0[7][0])
+                        pass
+                    elif winner == "player27":
+                        next_round1.append(pairs0[7][1])
+                        pass
+                    tourn.round1 = next_round1
+                    print next_round1
+                    tourn.put()
+                    self.redirect('/tournamentViewer?id=' + view_id)
+                elif len(next_round2) < 4:
+                    if winner == "player110":
+                        next_round2.append(pairs1[0][0])
+                        pass
+                    elif winner == "player120":
+                        next_round2.append(pairs1[0][1])
+                        pass
+                    elif winner == "player111":
+                        next_round2.append(pairs1[1][0])
+                        pass
+                    elif winner == "player121":
+                        next_round2.append(pairs1[1][1])
+                        pass
+                    if winner == "player112":
+                        next_round2.append(pairs1[2][0])
+                        pass
+                    elif winner == "player122":
+                        next_round2.append(pairs1[2][1])
+                        pass
+                    elif winner == "player113":
+                        next_round2.append(pairs1[3][0])
+                        pass
+                    elif winner == "player123":
+                        next_round2.append(pairs1[3][1])
+                        pass
+                    tourn.round2 = next_round2
+                    tourn.put()
+                    print tourn.round2
+                    self.redirect('/tournamentViewer?id=' + view_id)
+                elif len(next_round3) < 2:
+                    if winner == "player210":
+                        next_round3.append(pairs2[0][0])
+                        pass
+                    elif winner == "player220":
+                        next_round3.append(pairs2[0][1])
+                        pass
+                    if winner == "player211":
+                        next_round3.append(pairs2[1][0])
+                        pass
+                    elif winner == "player221":
+                        next_round3.append(pairs2[1][1])
+                        pass
+                    tourn.round3 = next_round3
+                    tourn.put()
+                    print type(tourn.round3)
+                    self.redirect('/tournamentViewer?id=' + view_id)
+                elif len(next_round4) < 1:
+                    if winner == "player310":
+                        next_round4.append(pairs3[0][0])
+                        pass
+                    elif winner == "player320":
+                        next_round4.append(pairs3[0][1])
+                        pass
+                    tourn.champions = next_round4[0]
+                    tourn.put()
+                    print tourn.champions
+                    print pairs3
+                    self.redirect('/tournamentViewer?id=' + view_id)
                 pass
-            elif winner == "player20":
-                next_round1.append(pairs0[0][1])
-                pass
-            elif winner == "player11":
-                next_round1.append(pairs0[1][0])
-                pass
-            elif winner == "player21":
-                next_round1.append(pairs0[1][1])
-                pass
-            elif winner == "player12":
-                next_round1.append(pairs0[2][0])
-                pass
-            elif winner == "player22":
-                next_round1.append(pairs0[2][1])
-                pass
-            elif winner == "player13":
-                next_round1.append(pairs0[3][0])
-                pass
-            elif winner == "player23":
-                next_round1.append(pairs0[3][1])
-                pass
-            elif winner == "player14":
-                next_round1.append(pairs0[4][0])
-                pass
-            elif winner == "player24":
-                next_round1.append(pairs0[4][1])
-                pass
-            elif winner == "player15":
-                next_round1.append(pairs0[5][0])
-                pass
-            elif winner == "player25":
-                next_round1.append(pairs0[5][1])
-                pass
-            elif winner == "player16":
-                next_round1.append(pairs0[6][0])
-                pass
-            elif winner == "player26":
-                next_round1.append(pairs0[6][1])
-                pass
-            elif winner == "player17":
-                next_round1.append(pairs0[7][0])
-                pass
-            elif winner == "player27":
-                next_round1.append(pairs0[7][1])
-                pass
-            tourn.round1 = next_round1
-            print next_round1
-            tourn.put()
-            self.redirect('/tournamentViewer?id=' + view_id)
-        elif len(next_round2) < 4:
-            if winner == "player110":
-                next_round2.append(pairs1[0][0])
-                pass
-            elif winner == "player120":
-                next_round2.append(pairs1[0][1])
-                pass
-            elif winner == "player111":
-                next_round2.append(pairs1[1][0])
-                pass
-            elif winner == "player121":
-                next_round2.append(pairs1[1][1])
-                pass
-            if winner == "player112":
-                next_round2.append(pairs1[2][0])
-                pass
-            elif winner == "player122":
-                next_round2.append(pairs1[2][1])
-                pass
-            elif winner == "player113":
-                next_round2.append(pairs1[3][0])
-                pass
-            elif winner == "player123":
-                next_round2.append(pairs1[3][1])
-                pass
-            tourn.round2 = next_round2
-            tourn.put()
-            print tourn.round2
-            self.redirect('/tournamentViewer?id=' + view_id)
-        elif len(next_round3) < 2:
-            if winner == "player210":
-                next_round3.append(pairs2[0][0])
-                pass
-            elif winner == "player220":
-                next_round3.append(pairs2[0][1])
-                pass
-            if winner == "player211":
-                next_round3.append(pairs2[1][0])
-                pass
-            elif winner == "player221":
-                next_round3.append(pairs2[1][1])
-                pass
-            tourn.round3 = next_round3
-            tourn.put()
-            print type(tourn.round3)
-            self.redirect('/tournamentViewer?id=' + view_id)
-        elif len(next_round4) < 1:
-            if winner == "player310":
-                tourn.champions = pairs3[0][0]
-                pass
-            elif winner == "player320":
-                tourn.champions = pairs3[0][1]
-                pass
-            # tourn.champions = next_round4
-            tourn.put()
-            print tourn.champions
-            print type(pairs3[0])
-            self.redirect('/tournamentViewer?id=' + view_id)
-        pass
+            else:
+                print cssi_user.first_name
+                viewer = tourn.put()
+                view_id = viewer.urlsafe()
+                self.redirect('/tournamentParticipate?id=' + view_id)
 
 
 app = webapp2.WSGIApplication([('/', MainPage),
