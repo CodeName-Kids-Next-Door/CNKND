@@ -42,12 +42,12 @@ class MainPage(webapp2.RequestHandler):
             main_template = \
                  jinja_current_directory.get_template('templates/main.html')
             self.response.write(main_template.render(logout_dict))
-                # self.response.write('''
-                #     <h2>Welcome %s %s (%s)!</h2> <br> <a href="profile">Profile</a> <br> %s <br>''' %
-                #     (cssi_user.first_name,
-                #     cssi_user.last_name,
-                #     email_address,
-                #     signout_link_html))
+            # self.response.write('''
+            #     <h2>Welcome %s %s (%s)!</h2> <br> <a href="profile">Profile</a> <br> %s <br>''' %
+            #     (cssi_user.first_name,
+            #     cssi_user.last_name,
+            #     email_address,
+            #     signout_link_html))
 
 class LoginPage(webapp2.RequestHandler):
     # def get(self):
