@@ -287,7 +287,7 @@ class TournmanetViewerPage(webapp2.RequestHandler):
                     pairs2.append([str(tourn.round2[i]), str(tourn.round2[len(tourn.round2) - i - 1])])
                 pairs3 = []
                 for i in range(0, len(tourn.round3) / 2):
-                    pairs3.append([str(tourn.round3[i])])
+                    pairs3.append([str(tourn.round3[i]), str(tourn.round3[len(tourn.round3) - i - 1])])
                 next_round1 = tourn.round1
                 next_round2 = tourn.round2
                 next_round3 = tourn.round3
