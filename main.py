@@ -87,6 +87,8 @@ class LoginPage(webapp2.RequestHandler):
                     <input type="submit"/>
                     </form><br> %s <br>''' % (email_address, signout_link_html))
         else:
+            login_link = users.create_login_url('/')
+            logout_dict['login'] = login_link
             self.response.write(main_template.render(logout_dict))
 
     def post(self):
