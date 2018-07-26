@@ -76,18 +76,9 @@ class LoginPage(webapp2.RequestHandler):
                     signout_link_html))
 
             else:
-                self.response.write('''
-                    <h2>Welcome to our site, %s! Please sign up!</h2> <br>
-                    <form method="post">
-                    <input name="first_name" placeholder='First Name'/>
-                    <br>
-                    <input name="last_name" placeholder='Last Name'/>
-                    <br>
-                    <input name="profile_name" placeholder="User Name"/>
-                    <input type="submit"/>
-                    </form><br> %s <br>''' % (email_address, signout_link_html))
+                self.redirect('/updateProfile')
         else:
-            login_link = users.create_login_url('/')
+            login_link = users.create_login_url('/updateProfile')
             logout_dict['login'] = login_link
             self.response.write(main_template.render(logout_dict))
 
@@ -241,6 +232,35 @@ class TournmanetParticipatePage(webapp2.RequestHandler):
         tournament_Viewer_template = \
             jinja_current_directory.get_template('Templates/tournament_Participate.html')
         self.response.write(tournament_Viewer_template.render(tourn_dict))
+
+class UpdatePage(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        if user:
+            user_dict = {'user': user.nickname()}
+            update_profile = jinja_current_directory.get_template('Templates/possibleLogin.html')
+            self.response.write(update_profile.render(user_dict))
+        else:
+            self.redirect('/login')
+
+        pass
+
+    def post(self):
+        user = users.get_current_user()
+        if not user:
+            self.error(500)
+            return
+        cssi_user = Users(
+            first_name = self.request.get('first_name'),
+            last_name = self.request.get('last_name'),
+            profiles = self.request.get('profile_name'),
+            is_login = True,
+            id= user.user_id())
+        cssi_user.put()
+        new_profile = Profiles(name = cssi_user.profiles, first_name = cssi_user.first_name)
+        new_profile.put()
+        self.redirect('/')
+        pass
 
 class TournmanetViewerPage(webapp2.RequestHandler):
     def get(self):
@@ -424,6 +444,7 @@ class TournmanetViewerPage(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([('/', MainPage),
     ('/login', LoginPage),
+    ('/updateProfile', UpdatePage),
     ('/profile', ProfilePage),
     ('/tournamentCreator', TournamentCreatorPage),
     ('/tournamentParticipate', TournmanetParticipatePage),

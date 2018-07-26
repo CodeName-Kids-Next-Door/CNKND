@@ -97,7 +97,7 @@
       </div>
       <br>
       <body>
-      <form class="image" method="get" action="{{login}}" style="text-align:center; font: 13px sans-serif">
+      <!-- <form class="image" method="get" action="{{login}}" style="text-align:center; font: 13px sans-serif">
             <h2>Already a User? Sign in below!</h2>
         <div style="width: 20em; margin: 1em auto;
                     text-align:left;
@@ -117,12 +117,13 @@
           <p style="margin-left: 3em">
             <input name="action" value="Login" type="submit"
                    id="submit-login" />
-            <!-- <input name="action" value="Logout" type="submit"
-                   id="submit-logout" /> -->
+            <input name="action" value="Logout" type="submit"
+                   id="submit-logout" />
           </p>
         </div>
         <input name="continue" type="hidden" value="/login"/>
-      </form>
+      </form> -->
+      <a href={{login}}><button>login</button></a>
       <h2>Welcome to our site! Please sign up!</h2> <br>
       <form method="post" class="signup">
       <h3> Please enter your First Name </h3>
