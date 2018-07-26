@@ -34,13 +34,13 @@ class MainPage(webapp2.RequestHandler):
             signout_link_html = '<a href="%s">Sign Out</a>' % users.create_logout_url('/')
             if cssi_user:
                 main_template = \
-                     jinja_current_directory.get_template('templates/main.html')
+                     jinja_current_directory.get_template('Templates/main.html')
                 self.response.write(main_template.render(logout_dict))
         else:
             logout_dict['loader'] = "Login"
             logout_dict['logout'] = "/login"
             main_template = \
-                 jinja_current_directory.get_template('templates/main.html')
+                 jinja_current_directory.get_template('Templates/main.html')
             self.response.write(main_template.render(logout_dict))
                 # self.response.write('''
                 #     <h2>Welcome %s %s (%s)!</h2> <br> <a href="profile">Profile</a> <br> %s <br>''' %
@@ -58,7 +58,7 @@ class LoginPage(webapp2.RequestHandler):
         logout_link = users.create_logout_url('/')
         logout_dict = {'logout': '/login', 'loader': "Login"}
         main_template = \
-                 jinja_current_directory.get_template('templates/login.html')
+                 jinja_current_directory.get_template('Templates/login.html')
         user = users.get_current_user()
         if user:
             email_address = user.nickname()
@@ -117,7 +117,7 @@ class ProfilePage(webapp2.RequestHandler):
             logout_dict = {'logout': logout_link, 'profile': cssi_user.profiles}
             if cssi_user:
                 profile_template = \
-                        jinja_current_directory.get_template('templates/profile.html')
+                        jinja_current_directory.get_template('Templates/profile.html')
                 self.response.write(profile_template.render(logout_dict))
                 self.response.write('''
                     Welcome %s %s (%s)! <br> %s <br>''' %
@@ -139,7 +139,7 @@ class TournamentCreatorPage(webapp2.RequestHandler):
             signout_link_html = '<a href="%s">Sign Out</a>' % users.create_logout_url('/')
             if cssi_user:
                 tournament_Creator_template = \
-                   jinja_current_directory.get_template('templates/tournament_Creator.html')
+                   jinja_current_directory.get_template('Templates/tournament_Creator.html')
                 self.response.write(tournament_Creator_template.render(logout_dict))
         else:
             self.response.write('''
@@ -231,7 +231,7 @@ class TournmanetParticipatePage(webapp2.RequestHandler):
             'color': tourn_query.background_color,
             'back': tourn_query.background_image,}
         tournament_Viewer_template = \
-            jinja_current_directory.get_template('templates/tournament_Participate.html')
+            jinja_current_directory.get_template('Templates/tournament_Participate.html')
         self.response.write(tournament_Viewer_template.render(tourn_dict))
 
 class TournmanetViewerPage(webapp2.RequestHandler):
@@ -262,7 +262,7 @@ class TournmanetViewerPage(webapp2.RequestHandler):
             'color': tourn_query.background_color,
             'back': tourn_query.background_image,}
         tournament_Viewer_template = \
-            jinja_current_directory.get_template('templates/tournament_Viewer.html')
+            jinja_current_directory.get_template('Templates/tournament_Viewer.html')
         self.response.write(tournament_Viewer_template.render(tourn_dict))
     def post(self):
         user = users.get_current_user()
@@ -287,7 +287,7 @@ class TournmanetViewerPage(webapp2.RequestHandler):
                     pairs2.append([str(tourn.round2[i]), str(tourn.round2[len(tourn.round2) - i - 1])])
                 pairs3 = []
                 for i in range(0, len(tourn.round3) / 2):
-                    pairs3.append([str(tourn.round3[i])])
+                    pairs3.append([str(tourn.round3[i]), str(tourn.round3[len(tourn.round3) - i - 1])])
                 next_round1 = tourn.round1
                 next_round2 = tourn.round2
                 next_round3 = tourn.round3
