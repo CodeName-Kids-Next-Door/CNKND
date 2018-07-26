@@ -61,6 +61,7 @@ class LoginPage(webapp2.RequestHandler):
                  jinja_current_directory.get_template('templates/login.html')
         user = users.get_current_user()
         if user:
+<<<<<<< HEAD
             email_address = user.nickname()
             cssi_user = Users.get_by_id(user.user_id())
             signout_link_html = '<a href="%s">Sign Out</a>' % users.create_logout_url('/')
@@ -86,11 +87,36 @@ class LoginPage(webapp2.RequestHandler):
                     <input name="profile_name" placeholder="User Name"/>
                     <input type="submit"/>
                     </form><br> %s <br>''' % (email_address, signout_link_html))
+=======
+            self.redirect("/profile")
+            # email_address = user.nickname()
+            # cssi_user = Users.get_by_id(user.user_id())
+            # signout_link_html = '<a href="%s">Sign Out</a>' % users.create_logout_url('/')
+            # if cssi_user:
+            #     logout_dict['loader'] = "Logout"
+            #     logout_dict['logout'] = logout_link
+            #     self.response.write(main_template.render(logout_dict))
+            #     self.response.write('''
+            #         <h2>Welcome %s %s (%s)!</h2> <br> <a href="profile">Profile</a> <br> %s <br>''' %
+            #         (cssi_user.first_name,
+            #         cssi_user.last_name,
+            #         email_address,
+            #         signout_link_html))
+            # else:
+            #     self.response.write('''
+            #         <h2>Welcome to our site, %s! Please sign up!</h2> <br>
+            #         <form method="post">
+            #         <input name="first_name" placeholder='First Name'/>
+            #         <br>
+            #         <input name="last_name" placeholder='Last Name'/>
+            #         <br>
+            #         <input name="profile_name" placeholder="User Name"/>
+            #         <input type="submit"/>
+            #         </form><br> %s <br>''' % (email_address, signout_link_html))
+>>>>>>> 2fa074307d4b2c35039edcf15b3a57f25afceb4c
         else:
             self.response.write(main_template.render(logout_dict))
-            # self.response.write('''
-            #     Please log in to use our site! <br>
-            #     <a href="%s">Sign in</a>''' % (users.create_login_url('/login')))
+
     def post(self):
         user = users.get_current_user()
         if not user:
@@ -126,8 +152,15 @@ class ProfilePage(webapp2.RequestHandler):
                     cssi_user.last_name,
                     cssi_user.profiles,
                     signout_link_html))
-    def post(self):
-        x=1
+        else:
+            self.redirect("/login")
+            # def post(self):
+            # profile_template = \
+            #     jinja_current_directory.get_template('templates/login.html')
+            # self.response.write(profile_template.render(logout_dict))
+            # self.response.write('''
+            #     Please log in to use our site! <br>
+            #     <a href="%s">Sign in</a>''' % (users.create_login_url('/login')))
 
 class TournamentCreatorPage(webapp2.RequestHandler):
     def get(self):
@@ -288,7 +321,7 @@ class TournmanetViewerPage(webapp2.RequestHandler):
                     pairs2.append([str(tourn.round2[i]), str(tourn.round2[len(tourn.round2) - i - 1])])
                 pairs3 = []
                 for i in range(0, len(tourn.round3) / 2):
-                    pairs3.append([str(tourn.round3[i])])
+                    pairs3.append([str(tourn.round3[i]), str(tourn.round3[len(tourn.round3) - i - 1])])
                 next_round1 = tourn.round1
                 next_round2 = tourn.round2
                 next_round3 = tourn.round3
