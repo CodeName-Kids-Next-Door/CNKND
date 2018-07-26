@@ -49,6 +49,7 @@
         background-image: url({{back}});
         background-repeat: no-repeat;
         background-size: cover;
+        background-color: Orangered;
       }
       .tournament-headers {
         flex-grow: 1;
@@ -204,25 +205,58 @@
 
   <div class="tournament-brackets">
     <ul class="bracket bracket-1">
-      {% for p in range((pairs|length)) %}
-        <li class="team-item" id="winner{{p}}"><button name="winner" value="player1" type="submit">Winner</button><p id="player1">{{pairs[p][0]}}</p><em> vs </em><!--<time>{{time}}</time>--><p id="player2">{{pairs[p][1]}}</p><button name="winner" value="player2" type="submit">Winner</button></li>
+      {% for p in range((pairs0|length)) %}
+        <li class="team-item" id="winner{{p}}">
+          <form method="post"><input name="winner" value="player1{{p}}" type="submit">Winner</input></form>
+          <p id="player1">{{pairs0[p][0]}}</p>
+          <em> vs </em>
+          <!--<time>{{time}}</time>-->
+          <p id="player2">{{pairs0[p][1]}}</p>
+            <form method="post"><input name="winner" value="player2{{p}}" type="submit">Winner</input></form>
+        </li>
       {% endfor %}
     </ul>
 
     <ul class="bracket bracket-2">
-      {% for p in range((player|length / 4)|round|int) %}
-        <li class="team-item" id="winner2{{p}}"> <em> vs </em> </li>
+      {% for p in range((pairs1|length)) %}
+        <li class="team-item" id="winner{{p}}">
+          <form method="post"><input name="winner" value="player11{{p}}" type="submit">Winner</input></form>
+          <p id="player1">{{pairs1[p][0]}}</p>
+          <em> vs </em>
+          <!--<time>{{time}}</time>-->
+          <p id="player2">{{pairs1[p][1]}}</p>
+            <form method="post"><input name="winner" value="player12{{p}}" type="submit">Winner</input></form>
+        </li>
       {% endfor %}
     </ul>
     <ul class="bracket bracket-3">
-      {% for p in range((player|length / 8)|round|int) %}
-        <li class="team-item" id="winner"> <em> vs </em> </li>
+      {% for p in range((pairs2|length)) %}
+        <li class="team-item" id="winner{{p}}">
+          <form method="post"><input name="winner" value="player21{{p}}" type="submit">Winner</input></form>
+          <p id="player1">{{pairs2[p][0]}}</p>
+          <em> vs </em>
+          <!--<time>{{time}}</time>-->
+          <p id="player2">{{pairs2[p][1]}}</p>
+            <form method="post"><input name="winner" value="player22{{p}}" type="submit">Winner</input></form>
+        </li>
       {% endfor %}
     </ul>
     <ul class="bracket bracket-4">
-      {% for p in range((player|length / 16)|round|int) %}
-        <li class="team-item" id="winner"> <em> vs </em> </li>
+      {% for p in range((pairs3|length)) %}
+        <li class="team-item" id="winner{{p}}">
+          <form method="post"><input name="winner" value="player31{{p}}" type="submit">Winner</input></form>
+          <p id="player1">{{pairs3[p][0]}}</p>
+          <em> vs </em>
+          <!--<time>{{time}}</time>-->
+          <p id="player2">{{pairs3[p][1]}}</p>
+            <form method="post"><input name="winner" value="player32{{p}}" type="submit">Winner</input></form>
+        </li>
       {% endfor %}
+    </ul>
+    <ul class="bracket bracket-5">
+      <li class="team-item" id="champions">
+        {{champions}}
+      </li>
     </ul>
   </body>
 </html>
