@@ -74,6 +74,7 @@ class LoginPage(webapp2.RequestHandler):
                     cssi_user.last_name,
                     email_address,
                     signout_link_html))
+                    
             else:
                 self.response.write('''
                     <h2>Welcome to our site, %s! Please sign up!</h2> <br>
