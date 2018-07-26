@@ -255,12 +255,12 @@ class TournmanetViewerPage(webapp2.RequestHandler):
             pairs2.append([str(tourn.round2[i]), str(tourn.round2[len(tourn.round2) - i - 1])])
         pairs3 = []
         for i in range(0, len(tourn.round3) / 2):
-            pairs3.append(str(tourn.round3[i]))
-        pairs3 = tourn.round3
+            pairs3.append([str(tourn.round3[i])])
         next_round1 = tourn.round1
         next_round2 = tourn.round2
         next_round3 = tourn.round3
-        next_round4 = tourn.champions
+        # next_round4 = tourn.champions
+        next_round4 = []
         viewer = tourn.put()
         view_id = viewer.urlsafe()
         if len(next_round1) < 8:
@@ -360,18 +360,19 @@ class TournmanetViewerPage(webapp2.RequestHandler):
                 pass
             tourn.round3 = next_round3
             tourn.put()
-            print len(tourn.round3)
+            print type(tourn.round3)
             self.redirect('/tournamentViewer?id=' + view_id)
         elif len(next_round4) < 1:
             if winner == "player310":
-                next_round4.append(pairs3[0])
+                tourn.champions = pairs3[0][0]
                 pass
             elif winner == "player320":
-                next_round4.append(pairs3[1])
+                tourn.champions = pairs3[0][1]
                 pass
-            tourn.champions = next_round4
+            # tourn.champions = next_round4
             tourn.put()
             print tourn.champions
+            print type(pairs3[0])
             self.redirect('/tournamentViewer?id=' + view_id)
         pass
 

@@ -8,12 +8,12 @@ class Tournaments(ndb.Model):
     loser_bracket = ndb.BooleanProperty(required = True)
     public = ndb.BooleanProperty(required = True)
     players = ndb.StringProperty(repeated = True)
-    champions = ndb.StringProperty(repeated =True)
+    champions = ndb.StringProperty()
     creator = ndb.StringProperty(required = True)
-    round0 = ndb.StringProperty(repeated = True)
+    round0 = ndb.StringProperty(repeated =True)
     round1 = ndb.StringProperty(repeated = True)
     round2 = ndb.StringProperty(repeated = True)
-    round3 = ndb.StringProperty(repeated =True)
+    round3 = ndb.StringProperty(repeated = True)
 
 class Profiles(ndb.Model):
     name = ndb.StringProperty(required = True)
@@ -33,3 +33,6 @@ class Probabilities(ndb.Model):
     profile = ndb.StringProperty(required = True)
     strength = ndb.IntegerProperty(required = True)
     rank = ndb.IntegerProperty(required = True)
+
+class MatchWinner(ndb.Model):
+    winner = ndb.StringProperty(required = True)
