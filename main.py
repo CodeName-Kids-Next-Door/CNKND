@@ -74,6 +74,7 @@ class LoginPage(webapp2.RequestHandler):
                     cssi_user.last_name,
                     email_address,
                     signout_link_html))
+
             else:
                 self.response.write('''
                     <h2>Welcome to our site, %s! Please sign up!</h2> <br>
@@ -87,9 +88,7 @@ class LoginPage(webapp2.RequestHandler):
                     </form><br> %s <br>''' % (email_address, signout_link_html))
         else:
             self.response.write(main_template.render(logout_dict))
-            # self.response.write('''
-            #     Please log in to use our site! <br>
-            #     <a href="%s">Sign in</a>''' % (users.create_login_url('/login')))
+
     def post(self):
         user = users.get_current_user()
         if not user:
@@ -125,8 +124,15 @@ class ProfilePage(webapp2.RequestHandler):
                     cssi_user.last_name,
                     cssi_user.profiles,
                     signout_link_html))
-    def post(self):
-        x=1
+        else:
+            self.redirect("/login")
+            # def post(self):
+            # profile_template = \
+            #     jinja_current_directory.get_template('templates/login.html')
+            # self.response.write(profile_template.render(logout_dict))
+            # self.response.write('''
+            #     Please log in to use our site! <br>
+            #     <a href="%s">Sign in</a>''' % (users.create_login_url('/login')))
 
 class TournamentCreatorPage(webapp2.RequestHandler):
     def get(self):
